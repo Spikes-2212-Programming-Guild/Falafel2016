@@ -11,18 +11,23 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Drivetain extends TankDrivetrain {
-	private SpeedController leftSpeedcontroller;
-	private SpeedController rightSpeedcontroller;
+	
+	private SpeedController leftSpeedController;
+	private SpeedController rightSpeedController;
+	
+	public Drivetain(SpeedController leftSpeedController, SpeedController rightSpeedController) {
+		this.leftSpeedController = leftSpeedController;
+		this.rightSpeedController = rightSpeedController;
+	}
 
 	@Override
 	public void setLeft(double speedLeft) {
-		// TODO Auto-generated method stub
-		leftSpeedcontroller.set(speedLeft);
+		leftSpeedController.set(speedLeft);
 	}
 
 	@Override
 	public void setRight(double speedRight) {
-		rightSpeedcontroller.set(speedRight);
+		rightSpeedController.set(speedRight);
 		
 	}
 
