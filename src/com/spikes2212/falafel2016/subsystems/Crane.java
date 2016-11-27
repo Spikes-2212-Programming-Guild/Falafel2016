@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Crane extends LimitedSubsystem {
-	DigitalInput min;
-	DigitalInput max;
+	private DigitalInput min;
+	private DigitalInput max;
 	public Crane(SpeedController motor,DigitalInput min,DigitalInput max) {
 		super(motor);
 		this.min=min;
