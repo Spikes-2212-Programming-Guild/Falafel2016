@@ -10,12 +10,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class Drivetain extends TankDrivetrain {
+public class Drivetrain extends TankDrivetrain {
 	
 	private SpeedController leftSpeedController;
 	private SpeedController rightSpeedController;
 	
-	public Drivetain(SpeedController leftSpeedController, SpeedController rightSpeedController) {
+	public Drivetrain(SpeedController leftSpeedController, SpeedController rightSpeedController) {
 		this.leftSpeedController = leftSpeedController;
 		this.rightSpeedController = rightSpeedController;
 	}
