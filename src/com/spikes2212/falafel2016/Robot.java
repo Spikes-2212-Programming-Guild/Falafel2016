@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import com.spikes2212.falafel2016.commands.ExampleCommand;
+import com.spikes2212.falafel2016.subsystems.Crane;
 import com.spikes2212.falafel2016.subsystems.Drivetrain;
 import com.spikes2212.falafel2016.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -23,6 +24,7 @@ public class Robot extends IterativeRobot {
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
 	public static Drivetrain drivetrain;
+	public static Crane crane;
 
     Command autonomousCommand;
     SendableChooser chooser;
