@@ -4,25 +4,25 @@ import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
 import com.spikes2212.utils.DoubleSpeedcontroller;
 
 import edu.wpi.first.wpilibj.PIDSource;
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  */
 public class Drivetain extends TankDrivetrain {
-	private DoubleSpeedcontroller leftDoubleSpeedcontroller;
-	private DoubleSpeedcontroller rightDoubleSpeedcontroller;
-	private double speedLeft,speedRight;
+	private SpeedController leftSpeedcontroller;
+	private SpeedController rightSpeedcontroller;
 
 	@Override
 	public void setLeft(double speedLeft) {
 		// TODO Auto-generated method stub
-		leftDoubleSpeedcontroller.set(speedLeft);
+		leftSpeedcontroller.set(speedLeft);
 	}
 
 	@Override
 	public void setRight(double speedRight) {
-		rightDoubleSpeedcontroller.set(speedRight);
+		rightSpeedcontroller.set(speedRight);
 		
 	}
 
