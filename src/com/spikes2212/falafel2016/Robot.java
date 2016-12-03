@@ -2,8 +2,12 @@
 package com.spikes2212.falafel2016;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+
+import com.spikes2212.falafel2016.commands.MoveAndDiscontainFloopyAuto;
+import com.spikes2212.falafel2016.commands.ScoreFloopy;
 import com.spikes2212.falafel2016.subsystems.Crane;
 import com.spikes2212.falafel2016.subsystems.Drivetrain;
 import com.spikes2212.falafel2016.subsystems.Locker;
@@ -30,11 +34,12 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
-
+		MoveAndDiscontainFloopyAuto ai=new MoveAndDiscontainFloopyAuto(drivetrain);
 	}
 
 	@Override
 	public void autonomousPeriodic() {
+		
 		Scheduler.getInstance().run();
 	}
 
