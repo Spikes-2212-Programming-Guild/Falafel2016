@@ -19,9 +19,9 @@ public class Crane extends LimitedSubsystem {
 	public static final double MIN = 35, MAX = 180, LOAD = 90;
 	private Potentiometer potentiometer;
 
-	public Crane(SpeedController motor, int portPotentiometer) {
+	public Crane(SpeedController motor,  Potentiometer potentiometer) {
 		super(motor);
-		this.potentiometer = new AnalogPotentiometer(portPotentiometer, 360, 0);
+		this.potentiometer = potentiometer;
 	}
 
 	public void initDefaultCommand() {
