@@ -1,7 +1,6 @@
 package com.spikes2212.falafel2016;
 
 import edu.wpi.first.wpilibj.buttons.Button;
-import com.spikes2212.falafel2016.commands.ExampleCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
