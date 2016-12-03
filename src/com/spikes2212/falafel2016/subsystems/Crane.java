@@ -21,11 +21,11 @@ public class Crane extends LimitedSubsystem {
 	public static final double CRANE_OPEN_SPEED = 0.5;
 	public static final double CRANE_CLOSING_SPEED = -0.5;
 	
-	private Potentiometer potentio;
+	private Potentiometer potentiometer;
 
-	public Crane(SpeedController motor, int portPotentio) {
+	public Crane(SpeedController motor,  Potentiometer potentiometer) {
 		super(motor);
-		this.potentio = new AnalogPotentiometer(portPotentio, 360, 0);
+		this.potentiometer = potentiometer;
 	}
 
 	public void initDefaultCommand() {
@@ -36,19 +36,19 @@ public class Crane extends LimitedSubsystem {
 	@Override
 	public boolean isMin() {
 		// TODO Auto-generated method stub
-		return (potentio.get() <= MIN_ANGLE);
+		return (potentiometer.get() <= MIN_ANGLE);
 	}
 
 	@Override
 	public boolean isMax() {
 		// TODO Auto-generated method stub
-		return (potentio.get() >= MAX_ANGLE);
+		return (potentiometer.get() >= MAX_ANGLE);
 	}
 
 	@Override
 	public PIDSource getPIDSource() {
 		// TODO Auto-generated method stub
-		return potentio;
+		return potentiometer;
 	}
 
 }
