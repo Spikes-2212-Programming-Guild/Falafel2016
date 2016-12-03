@@ -17,11 +17,11 @@ import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 public class Crane extends LimitedSubsystem {
 
 	public static final double MIN = 35, MAX = 180, LOAD = 90;
-	private Potentiometer potentio;
+	private Potentiometer potentiometer;
 
-	public Crane(SpeedController motor, int portPotentio) {
+	public Crane(SpeedController motor,  Potentiometer potentiometer) {
 		super(motor);
-		this.potentio = new AnalogPotentiometer(portPotentio, 360, 0);
+		this.potentiometer = potentiometer;
 	}
 
 	public void initDefaultCommand() {
@@ -32,19 +32,19 @@ public class Crane extends LimitedSubsystem {
 	@Override
 	public boolean isMin() {
 		// TODO Auto-generated method stub
-		return (potentio.get() <= MIN);
+		return (potentiometer.get() <= MIN);
 	}
 
 	@Override
 	public boolean isMax() {
 		// TODO Auto-generated method stub
-		return (potentio.get() >= MAX);
+		return (potentiometer.get() >= MAX);
 	}
 
 	@Override
 	public PIDSource getPIDSource() {
 		// TODO Auto-generated method stub
-		return potentio;
+		return potentiometer;
 	}
 
 }
