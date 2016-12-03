@@ -13,9 +13,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  */
 public class Load extends CommandGroup {
-    
-    public  Load() {
-       addParallel(new MoveLimitedSubsystem(Robot.locker, Locker.UNLOCKING_SPEED));
-       addParallel(new MoveLimitedSubsystemWithPID(Crane.LOAD));
-    }
+
+	public Load() {
+		addParallel(new MoveLimitedSubsystem(Robot.locker, Locker.UNLOCKING_SPEED));
+		addParallel(new MoveLimitedSubsystemWithPID(Crane.LOAD));
+	}
 }

@@ -13,9 +13,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class ScoreFloopy extends CommandGroup {
 
-    public  ScoreFloopy() {
-    	addSequential(new MoveLimitedSubsystem(Robot.crane,Crane.CRANE_OPEN_SPEED));
-    	addSequential(new MoveLimitedSubsystem(Robot.locker, Locker.UNLOCKING_SPEED));
-   
-    }
+	public ScoreFloopy() {
+		addSequential(new MoveLimitedSubsystem(Robot.crane, Crane.CRANE_OPEN_SPEED));
+		addSequential(new MoveLimitedSubsystem(Robot.locker, Locker.UNLOCKING_SPEED));
+
+	}
 }
