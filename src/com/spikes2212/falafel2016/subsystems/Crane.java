@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.interfaces.Potentiometer;
  */
 public class Crane extends LimitedSubsystem {
 
-	public static final double MIN = 35, MAX = 180, LOAD = 90;
+	public static final double MIN_ANGLE = 35, MAX_ANGLE = 180, LOAD_ANGLE = 90;
 	
 	public static final double CRANE_OPEN_SPEED = 0.5;
 	public static final double CRANE_CLOSING_SPEED = -0.5;
@@ -36,13 +36,13 @@ public class Crane extends LimitedSubsystem {
 	@Override
 	public boolean isMin() {
 		// TODO Auto-generated method stub
-		return (potentio.get() <= MIN);
+		return (potentio.get() <= MIN_ANGLE);
 	}
 
 	@Override
 	public boolean isMax() {
 		// TODO Auto-generated method stub
-		return (potentio.get() >= MAX);
+		return (potentio.get() >= MAX_ANGLE);
 	}
 
 	@Override

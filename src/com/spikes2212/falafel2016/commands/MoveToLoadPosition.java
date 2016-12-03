@@ -16,6 +16,6 @@ public class MoveToLoadPosition extends CommandGroup {
 
 	public MoveToLoadPosition() {
 		addParallel(new MoveLimitedSubsystem(Robot.locker, Locker.UNLOCKING_SPEED));
-		addParallel(new MoveLimitedSubsystemWithPID(Crane.LOAD));
+		addParallel(new MoveLimitedSubsystemWithPID(Crane.LOAD_ANGLE));
 	}
 }
