@@ -21,10 +21,4 @@ public class RobotMap {
 
 	public interface AnalogInput {
 	}
-
-	public static final double LOCKING_SPEED = 0.3;
-	public static final double UNLOCKING_SPEED = -0.3;
-	public static final double CRANE_OPEN_SPEED = 0.5;
-	public static final double CRANE_CLOSING_SPEED = -0.5;
-
 }

@@ -17,6 +17,10 @@ import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 public class Crane extends LimitedSubsystem {
 
 	public static final double MIN = 35, MAX = 180, LOAD = 90;
+	
+	public static final double CRANE_OPEN_SPEED = 0.5;
+	public static final double CRANE_CLOSING_SPEED = -0.5;
+	
 	private Potentiometer potentio;
 
 	public Crane(SpeedController motor, int portPotentio) {
