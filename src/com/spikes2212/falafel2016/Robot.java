@@ -9,6 +9,8 @@ import com.spikes2212.falafel2016.commands.ExampleCommand;
 import com.spikes2212.falafel2016.subsystems.Crane;
 import com.spikes2212.falafel2016.subsystems.Drivetrain;
 import com.spikes2212.falafel2016.subsystems.ExampleSubsystem;
+import com.spikes2212.falafel2016.subsystems.Locker;
+
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -25,6 +27,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static Drivetrain drivetrain;
 	public static Crane crane;
+	public static Locker locker;
 
     Command autonomousCommand;
     SendableChooser chooser;

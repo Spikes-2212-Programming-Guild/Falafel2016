@@ -3,6 +3,7 @@ package com.spikes2212.falafel2016.subsystems;
 import com.spikes2212.genericsubsystems.LimitedSubsystem;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.VictorSP;
@@ -38,6 +39,11 @@ public class Locker extends LimitedSubsystem {
 	public boolean isMax() {
 
 		return up.get();
+	}
+
+	@Override
+	public PIDSource getPIDSource() {
+		return null;
 	}
 
 }
