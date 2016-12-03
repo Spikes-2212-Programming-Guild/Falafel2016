@@ -16,9 +16,25 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static Drivetrain drivetrain;
 	public static Crane crane;
+	
+	public void robotInit() {
+		
+	}
 
     public void disabledInit(){
 
+    }
+    
+    public void autonomousInit() {
+    	
+    }
+    
+    public void autonomousPeriodic() {
+    	
+    }
+    
+    public void teleopInit() {
+    	
     }
 	
 	public void disabledPeriodic() {
