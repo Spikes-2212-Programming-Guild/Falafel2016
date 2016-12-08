@@ -60,4 +60,8 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
 		LiveWindow.run();
 	}
+	
+	public boolean isOneJoystick(){
+		return this.oneJoystick;
+	}
 }
