@@ -3,15 +3,17 @@ package com.spikes2212.falafel2016;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.spikes2212.falafel2016.commands.MoveAndDiscontainFloopyAuto;
-import com.spikes2212.falafel2016.commands.ScoreFloopy;
 import com.spikes2212.falafel2016.subsystems.Crane;
 import com.spikes2212.falafel2016.subsystems.Drivetrain;
 import com.spikes2212.falafel2016.subsystems.Locker;
-
 
 public class Robot extends IterativeRobot {
 
@@ -19,10 +21,15 @@ public class Robot extends IterativeRobot {
 	public static Drivetrain drivetrain;
 	public static Crane crane;
 	public static Locker locker;
+	public static SendableChooser chooser;
+	public static Command autoCommand;
 
 	@Override
 	public void robotInit() {
-		
+		chooser = new SendableChooser();
+		chooser.addObject("MoveAndDiscontainFloopy", new MoveAndDiscontainFloopyAuto(drivetrain,
+				Constants.Autonomous.LEFT_SPEED, Constants.Autonomous.RIGHT_SPEED, 7));
+		SmartDashboard.putData("auto choose", chooser);
 
 		oi = new OI();
 	}
@@ -34,18 +41,19 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
-		MoveAndDiscontainFloopyAuto ai=new MoveAndDiscontainFloopyAuto(drivetrain);
+		autoCommand = (Command) chooser.getSelected();
+		autoCommand.start();
+
 	}
 
 	@Override
 	public void autonomousPeriodic() {
-		
 		Scheduler.getInstance().run();
 	}
 
 	@Override
 	public void teleopInit() {
-
+		autoCommand.cancel();
 	}
 
 	@Override
