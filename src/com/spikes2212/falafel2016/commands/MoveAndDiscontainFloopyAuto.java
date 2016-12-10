@@ -6,10 +6,10 @@ import com.spikes2212.genericsubsystems.drivetrains.commands.DriveTank;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class MoveAndDiscontainFloopyAuto extends CommandGroup{
+public class MoveAndDiscontainFloopyAuto extends CommandGroup {
 
-	public MoveAndDiscontainFloopyAuto(Drivetrain dt){
-		addSequential(new DriveTank(dt, 0.3, 0.3),7);
+	public MoveAndDiscontainFloopyAuto(Drivetrain dt, double leftSpeed, double rightSpeed, double timeOut) {
+		addSequential(new DriveTank(dt, leftSpeed, rightSpeed), timeOut);
 		addSequential(new ScoreFloopy());
 		addSequential(new Fold());
 	}
