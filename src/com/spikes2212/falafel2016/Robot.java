@@ -27,7 +27,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		chooser = new SendableChooser();
-		chooser.addObject("MoveAndDiscontainFloopy", new MoveAndDiscontainFloopyAuto(drivetrain,
+		chooser.addDefault("MoveAndDiscontainFloopy", new MoveAndDiscontainFloopyAuto(drivetrain,
 				Constants.Autonomous.LEFT_SPEED, Constants.Autonomous.RIGHT_SPEED, 7));
 		SmartDashboard.putData("auto choose", chooser);
 
@@ -43,7 +43,6 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		autoCommand = (Command) chooser.getSelected();
 		autoCommand.start();
-
 	}
 
 	@Override
