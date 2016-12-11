@@ -21,10 +21,10 @@ public class Crane extends LimitedSubsystem implements Lockable {
 	private Potentiometer potentiometer;
 	private DigitalInput up, down;
 
-	Blocker blocker;
+	Brake blocker;
 
 	public Crane(SpeedController motor, Potentiometer potentiometer, DigitalInput up, DigitalInput down,
-			Blocker blocker) {
+			Brake blocker) {
 		super(motor);
 		this.potentiometer = potentiometer;
 		this.up = up;
