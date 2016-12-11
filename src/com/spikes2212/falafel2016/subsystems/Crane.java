@@ -9,19 +9,18 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 
-public class Crane extends LimitedSubsystem implements Lockable {
+public class Crane extends LimitedSubsystem {
 
 	public static final double LOAD_ANGLE = 90;
 
 	public static final double CRANE_OPEN_SPEED = 0.5;
 	public static final double CRANE_CLOSING_SPEED = -0.5;
 
-	public boolean isLocked;
 
 	private Potentiometer potentiometer;
 	private DigitalInput up, down;
 
-	Brake blocker;
+	public final Brake brake;
 
 	public Crane(SpeedController motor, Potentiometer potentiometer, DigitalInput up, DigitalInput down,
 			Brake blocker) {
@@ -29,7 +28,7 @@ public class Crane extends LimitedSubsystem implements Lockable {
 		this.potentiometer = potentiometer;
 		this.up = up;
 		this.down = down;
-		this.blocker = blocker;
+		this.brake = blocker;
 	}
 
 	public void initDefaultCommand() {
@@ -39,25 +38,20 @@ public class Crane extends LimitedSubsystem implements Lockable {
 	@Override
 	public boolean isMin() {
 		// TODO Auto-generated method stub
-		return down.get();
+		return down.get() || brake.isMax();
 	}
 
 	@Override
 	public boolean isMax() {
 		// TODO Auto-generated method stub
-		return up.get();
+		return up.get() || brake.isMax();
 	}
 
 	@Override
 	public PIDSource getPIDSource() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.potentiometer;
 	}
 
-	@Override
-	public boolean isLocked() {
-		// TODO Auto-generated method stub
-		return !this.blocker.isMax();
-	}
 
 }
