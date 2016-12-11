@@ -1,14 +1,9 @@
 package com.spikes2212.falafel2016.subsystems;
 
-import com.spikes2212.falafel2016.RobotMap;
 import com.spikes2212.genericsubsystems.LimitedSubsystem;
 
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.AnalogPotentiometer;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 
 /**
