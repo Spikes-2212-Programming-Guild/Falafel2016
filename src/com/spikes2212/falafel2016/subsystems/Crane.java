@@ -1,33 +1,39 @@
 package com.spikes2212.falafel2016.subsystems;
 
-
 import com.spikes2212.genericsubsystems.LimitedSubsystem;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 
-public class Crane extends LimitedSubsystem {
+public class Crane extends LimitedSubsystem implements MechanicLimited {
 
 	public static final double LOAD_ANGLE = 90;
 
 	public static final double CRANE_OPEN_SPEED = 0.5;
 	public static final double CRANE_CLOSING_SPEED = -0.5;
 
-	private Potentiometer potentiometer;
-	private DigitalInput up,down;
+	public boolean isLocked;
 
-	public Crane(SpeedController motor, Potentiometer potentiometer,DigitalInput up,DigitalInput down) {
+	private Potentiometer potentiometer;
+	private DigitalInput up, down;
+
+	Blocker blocker;
+
+	public Crane(SpeedController motor, Potentiometer potentiometer, DigitalInput up, DigitalInput down,
+			Blocker blocker) {
 		super(motor);
 		this.potentiometer = potentiometer;
-		this.up=up;
-		this.down=down;
+		this.up = up;
+		this.down = down;
+		this.blocker = blocker;
 	}
 
 	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
+
 	}
 
 	@Override
@@ -46,6 +52,12 @@ public class Crane extends LimitedSubsystem {
 	public PIDSource getPIDSource() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean pathIsClear() {
+		// TODO Auto-generated method stub
+		return !this.blocker.isMax();
 	}
 
 }
