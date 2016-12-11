@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 
-public class Crane extends LimitedSubsystem implements MechanicLimited {
+public class Crane extends LimitedSubsystem implements Lockable {
 
 	public static final double LOAD_ANGLE = 90;
 
@@ -55,7 +55,7 @@ public class Crane extends LimitedSubsystem implements MechanicLimited {
 	}
 
 	@Override
-	public boolean pathIsClear() {
+	public boolean isLocked() {
 		// TODO Auto-generated method stub
 		return !this.blocker.isMax();
 	}

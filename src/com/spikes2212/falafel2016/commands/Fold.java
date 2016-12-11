@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class Fold extends CommandGroup {
 	public Fold() {
-		if (!Robot.crane.pathIsClear()) {
+		if (!Robot.crane.isLocked()) {
 			addSequential(new MoveLimitedSubsystem(Robot.blocker, Blocker.OPEN_SPEED));// FIXME
 																		// add
 																		// actual
