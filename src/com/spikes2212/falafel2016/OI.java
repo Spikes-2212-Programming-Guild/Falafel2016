@@ -3,10 +3,8 @@ package com.spikes2212.falafel2016;
 import com.spikes2212.falafel2016.commands.Fold;
 import com.spikes2212.falafel2016.commands.MoveToLoadPosition;
 import com.spikes2212.falafel2016.commands.ScoreFloopy;
-import com.spikes2212.falafel2016.subsystems.Crane;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
@@ -22,9 +20,9 @@ public class OI {
 	JoystickButton loadButton;
 
 	public OI() {
-		
-		leftJoystick=new Joystick(0);
-		
+
+		leftJoystick = new Joystick(0);
+
 		scoreButton = new JoystickButton(leftJoystick, 1);
 		loadButton = new JoystickButton(leftJoystick, 2);
 		foldButton = new JoystickButton(leftJoystick, 3);
