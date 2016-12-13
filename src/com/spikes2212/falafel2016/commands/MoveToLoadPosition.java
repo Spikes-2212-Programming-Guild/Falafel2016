@@ -1,7 +1,10 @@
 package com.spikes2212.falafel2016.commands;
 
+import java.util.function.Supplier;
+
 import com.spikes2212.falafel2016.Robot;
 import com.spikes2212.falafel2016.RobotMap;
+import com.spikes2212.falafel2016.subsystems.Brake;
 import com.spikes2212.falafel2016.subsystems.Crane;
 import com.spikes2212.falafel2016.subsystems.Locker;
 import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
@@ -14,8 +17,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class MoveToLoadPosition extends CommandGroup {
 
-	public MoveToLoadPosition() {
-		addParallel(new MoveLimitedSubsystem(Robot.locker, Locker.UNLOCKING_SPEED));
+	public MoveToLoadPosition(Crane crane) {
+		addParallel(new MoveLimitedSubsystem(crane.brake, Brake.OPEN_SPEED));
 		addParallel(new MoveLimitedSubsystemWithPID(Crane.LOAD_ANGLE));
 	}
 }
