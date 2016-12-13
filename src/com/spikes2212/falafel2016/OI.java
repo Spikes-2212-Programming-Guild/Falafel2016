@@ -17,9 +17,9 @@ public class OI {
 
 	private Joystick leftJoystick;
 
-	JoystickButton scoreButton;
-	JoystickButton foldButton;
-	JoystickButton loadButton;
+	private JoystickButton scoreButton;
+	private JoystickButton foldButton;
+	private JoystickButton loadButton;
 
 	public OI() {
 		
