@@ -15,6 +15,5 @@ public class ScoreFloopy extends CommandGroup {
 	public ScoreFloopy() {
 		addSequential(new MoveCrane(Robot.crane, Crane.CRANE_OPEN_SPEED));
 		addSequential(new MoveLimitedSubsystem(Robot.locker, Locker.UNLOCKING_SPEED));
-
 	}
 }
