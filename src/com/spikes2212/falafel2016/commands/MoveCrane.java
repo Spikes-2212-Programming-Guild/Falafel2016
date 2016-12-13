@@ -9,14 +9,14 @@ import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class MoveCrane extends CommandGroup {
-	public MoveCrane(Supplier<Double> s, Crane crane) {
+	public MoveCrane(Crane crane, Supplier<Double> s) {
 		addSequential(new MoveLimitedSubsystem(crane.brake, Brake.OPEN_SPEED));
 		addSequential(new MoveLimitedSubsystem(crane, s));
 		addSequential(new MoveLimitedSubsystem(crane.brake, Brake.CLOSE_SPEED));
 	}
 
 	public MoveCrane(double s, Crane crane) {
-		this(() -> s, crane);
+		this(crane, () -> s);
 	}
 
 }
