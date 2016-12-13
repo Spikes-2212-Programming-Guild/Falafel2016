@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class MoveToLoadPosition extends CommandGroup {
 
 	public MoveToLoadPosition(Crane crane) {
-		addParallel(new MoveLimitedSubsystem(crane.brake, Brake.OPEN_SPEED));
-		addParallel(new MoveLimitedSubsystemWithPID(Crane.LOAD_ANGLE));
+		addSequential(new MoveLimitedSubsystem(crane.brake, Brake.OPEN_SPEED));
+		addSequential(new MoveLimitedSubsystemWithPID(Crane.LOAD_ANGLE));
 	}
 }
