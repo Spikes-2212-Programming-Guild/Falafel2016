@@ -15,7 +15,7 @@ public class MoveCrane extends CommandGroup {
 		addSequential(new MoveLimitedSubsystem(crane.brake, Brake.CLOSE_SPEED));
 	}
 
-	public MoveCrane(double s, Crane crane) {
+	public MoveCrane(Crane crane, double s) {
 		this(crane, () -> s);
 	}
 
