@@ -22,10 +22,13 @@ public class Crane extends LimitedSubsystem {
 	public static final double CRANE_CLOSING_SPEED = -0.5;
 	
 	private Potentiometer potentiometer;
+	
+	public final Brake brake;
 
-	public Crane(SpeedController motor,  Potentiometer potentiometer) {
+	public Crane(SpeedController motor,  Potentiometer potentiometer,Brake blocker) {
 		super(motor);
 		this.potentiometer = potentiometer;
+		this.brake=blocker;
 	}
 
 	public void initDefaultCommand() {
@@ -36,13 +39,13 @@ public class Crane extends LimitedSubsystem {
 	@Override
 	public boolean isMin() {
 		// TODO Auto-generated method stub
-		return (potentiometer.get() <= MIN_ANGLE);
+		return (potentiometer.get() <= MIN_ANGLE)||brake.isMax();
 	}
 
 	@Override
 	public boolean isMax() {
 		// TODO Auto-generated method stub
-		return (potentiometer.get() >= MAX_ANGLE);
+		return (potentiometer.get() >= MAX_ANGLE)||brake.isMax();
 	}
 
 	@Override
