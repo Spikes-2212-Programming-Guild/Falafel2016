@@ -14,6 +14,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class Fold extends CommandGroup {
 	public Fold() {
-		addSequential(new MoveLimitedSubsystem(Robot.crane, Crane.CRANE_CLOSING_SPEED));
+		addSequential(new MoveCrane(Robot.crane, Crane.CRANE_CLOSING_SPEED));
 	}
 }
