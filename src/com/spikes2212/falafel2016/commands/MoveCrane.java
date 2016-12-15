@@ -10,12 +10,13 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class MoveCrane extends CommandGroup {
 	public MoveCrane(Crane crane, Supplier<Double> s) {
-		addSequential(new MoveLimitedSubsystem(crane.brake, Brake.OPEN_SPEED));
-		addSequential(new MoveLimitedSubsystem(crane, s));
+		addSequential(new MoveLimitedSubsystem(crane.brake, Brake.OPEN_SPEED),10);
+		addSequential(new MoveLimitedSubsystem(crane, s),10);
 		addSequential(new MoveLimitedSubsystem(crane.brake, Brake.CLOSE_SPEED));
 	}
 
 	public MoveCrane(Crane crane, double s) {
 		this(crane, () -> s);
 	}
+
 }
