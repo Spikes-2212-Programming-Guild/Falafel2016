@@ -18,5 +18,4 @@ public class MoveCrane extends CommandGroup {
 	public MoveCrane(Crane crane, double s) {
 		this(crane, () -> s);
 	}
-
 }
