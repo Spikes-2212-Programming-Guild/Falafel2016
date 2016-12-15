@@ -18,8 +18,6 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void robotInit() {
-		
-
 		oi = new OI();
 	}
 
