@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class Fold extends CommandGroup {
 	public Fold() {
-		addParallel(new MoveLimitedSubsystem(Robot.crane, Crane.CRANE_CLOSING_SPEED));
-		addParallel(new MoveLimitedSubsystem(Robot.locker, Locker.LOCKING_SPEED));	
+		addSequential(new MoveLimitedSubsystem(Robot.locker, Locker.LOCKING_SPEED));	
+		addSequential(new MoveLimitedSubsystem(Robot.crane, Crane.CRANE_CLOSING_SPEED));
 	}
 }
