@@ -9,30 +9,31 @@ import edu.wpi.first.wpilibj.VictorSP;
 
 public class Brake extends LimitedSubsystem {
 
-	private DigitalInput stopBreaking; // Normally open!
+	private DigitalInput close, open; // Normally open!
 	public static final double OPEN_SPEED = 0.3;// FIXME actual speed
 	public static final double CLOSE_SPEED = -0.3;// FIXME actual speed
 
-	public Brake(SpeedController motor, DigitalInput stopBreaking) {
+	public Brake(SpeedController motor, DigitalInput close, DigitalInput open) {
 		super(motor);
-		this.stopBreaking = stopBreaking;
+		this.close = close;
+		this.open = open;
 	}
 
-	public Brake(int motorPort, int digitalInputPort) {
-		this(new VictorSP(motorPort), new DigitalInput(digitalInputPort));// FIXME
-																			// kind
-																			// of
-																			// motor
+	public Brake(int motorPort, int closePort, int openPort) {
+		this(new VictorSP(motorPort), new DigitalInput(closePort), new DigitalInput(openPort));// FIXME
+		// kind
+		// of
+		// motor
 	}
 
 	@Override
 	public boolean isMin() {
-		return isMax();
+		return close.get();
 	}
 
 	@Override
 	public boolean isMax() {
-		return stopBreaking.get();
+		return open.get();
 	}
 
 	@Override
