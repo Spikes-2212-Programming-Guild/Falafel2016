@@ -5,11 +5,9 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
-import com.spikes2212.falafel2016.subsystems.Brake;
 import com.spikes2212.falafel2016.subsystems.Crane;
 import com.spikes2212.falafel2016.subsystems.Drivetrain;
 import com.spikes2212.falafel2016.subsystems.Locker;
-
 
 public class Robot extends IterativeRobot {
 
@@ -20,7 +18,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void robotInit() {
-		
+
 		oi = new OI();
 	}
 
@@ -60,5 +58,5 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
 		LiveWindow.run();
 	}
-	
+
 }
