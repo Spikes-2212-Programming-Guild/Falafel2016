@@ -10,12 +10,11 @@ import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 public class Crane extends LimitedSubsystem {
 
 	public static final double LOAD_ANGLE = 90;
-
+	
 	public static final double CRANE_OPEN_SPEED = 0.5;
 	public static final double CRANE_CLOSING_SPEED = -0.5;
 
-
-	private Potentiometer potentiometer;
+	private final Potentiometer potentiometer;
 	private DigitalInput up, down;
 
 	public final Brake brake;
@@ -23,10 +22,10 @@ public class Crane extends LimitedSubsystem {
 	public Crane(SpeedController motor, Potentiometer potentiometer, DigitalInput up, DigitalInput down,
 			Brake blocker) {
 		super(motor);
-		this.potentiometer = potentiometer;
-		this.up = up;
-		this.down = down;
-		this.brake = blocker;
+		this.potentiometer=potentiometer;
+		this.up=up;
+		this.down=down;
+		this.brake=blocker;
 	}
 
 	public void initDefaultCommand() {
@@ -35,21 +34,17 @@ public class Crane extends LimitedSubsystem {
 
 	@Override
 	public boolean isMin() {
-		// TODO Auto-generated method stub
 		return down.get() || brake.isMax();
 	}
 
 	@Override
 	public boolean isMax() {
-		// TODO Auto-generated method stub
 		return up.get() || brake.isMax();
 	}
 
 	@Override
 	public PIDSource getPIDSource() {
-		// TODO Auto-generated method stub
 		return this.potentiometer;
 	}
-
 
 }

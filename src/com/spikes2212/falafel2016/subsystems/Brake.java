@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.VictorSP;
 public class Brake extends LimitedSubsystem {
 
 	private DigitalInput stopBreaking; // Normally open!
-	public static final double OPEN_SPEED=0.3;//FIXME actual speed
-	public static final double CLOSE_SPEED=-0.3;//FIXME actual speed
+	public static final double OPEN_SPEED = 0.3;// FIXME actual speed
+	public static final double CLOSE_SPEED = -0.3;// FIXME actual speed
 
 	public Brake(SpeedController motor, DigitalInput stopBreaking) {
 		super(motor);

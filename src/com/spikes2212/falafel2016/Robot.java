@@ -13,17 +13,14 @@ import com.spikes2212.falafel2016.subsystems.Locker;
 
 public class Robot extends IterativeRobot {
 
-	private static boolean oneJoystick; 
 	public static OI oi;
 	public static Drivetrain drivetrain;
 	public static Crane crane;
 	public static Locker locker;
-	public static Brake blocker;
 
 	@Override
 	public void robotInit() {
 		
-		oneJoystick=true;
 		oi = new OI();
 	}
 
@@ -64,7 +61,4 @@ public class Robot extends IterativeRobot {
 		LiveWindow.run();
 	}
 	
-	public static boolean isOneJoystick(){
-		return oneJoystick;
-	}
 }

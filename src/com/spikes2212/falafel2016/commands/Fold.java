@@ -1,3 +1,4 @@
+
 package com.spikes2212.falafel2016.commands;
 
 import com.spikes2212.falafel2016.Robot;
@@ -11,9 +12,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class ScoreFloopy extends CommandGroup {
-	public ScoreFloopy() {
-		addSequential(new MoveCrane(Robot.crane, Crane.CRANE_OPEN_SPEED));
-		addSequential(new MoveLimitedSubsystem(Robot.locker, Locker.UNLOCKING_SPEED));
+public class Fold extends CommandGroup {
+	public Fold() {
+		addSequential(new MoveLimitedSubsystem(Robot.locker, Locker.LOCKING_SPEED));	
+		addSequential(new MoveLimitedSubsystem(Robot.crane, Crane.CRANE_CLOSING_SPEED));
 	}
 }
