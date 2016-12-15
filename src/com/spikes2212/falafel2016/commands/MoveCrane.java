@@ -14,14 +14,18 @@ public class MoveCrane extends CommandGroup {
 		addSequential(new MoveLimitedSubsystem(crane, s));
 		addSequential(new MoveLimitedSubsystem(crane.brake, Brake.CLOSE_SPEED));
 	}
+
 	public MoveCrane(Crane crane, Supplier<Double> s, int timeout) {
 		addSequential(new MoveLimitedSubsystem(crane.brake, Brake.OPEN_SPEED));
-		addSequential(new MoveLimitedSubsystem(crane, s),timeout);
+		addSequential(new MoveLimitedSubsystem(crane, s), timeout);
 		addSequential(new MoveLimitedSubsystem(crane.brake, Brake.CLOSE_SPEED));
 	}
 
-	public MoveCrane(Crane crane, double s) {
-		this(crane, () -> s);
+	public MoveCrane(Crane crane, double speed) {
+		this(crane, () -> speed);
 	}
 
+	public MoveCrane(Crane crane, double speed, int timeout) {
+		this(crane, () -> speed, timeout);
+	}
 }
