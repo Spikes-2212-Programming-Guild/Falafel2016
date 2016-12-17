@@ -22,6 +22,7 @@ public class Crane extends LimitedSubsystem {
 	public Crane(SpeedController motor, Potentiometer potentiometer, DigitalInput up, DigitalInput down,
 			Brake blocker) {
 		super(motor);
+		this.motor.setInverted(true);
 		this.potentiometer=potentiometer;
 		this.up=up;
 		this.down=down;
