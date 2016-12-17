@@ -43,15 +43,14 @@ public class OI /* GEVALD */ {
 
 	public OI() {
 		// joystick navigator commands
-		closeLockerJ.whileHeld(new MoveLimitedSubsystem(Robot.locker, Locker.LOCKING_SPEED));
-		openLockerJ.whileHeld(new MoveLimitedSubsystem(Robot.locker, Locker.UNLOCKING_SPEED));
-		closeCraneJ.whileHeld(new MoveLimitedSubsystem(Robot.crane, Crane.CRANE_CLOSING_SPEED));
-		openCraneJ.whileHeld(new MoveLimitedSubsystem(Robot.crane, Crane.CRANE_OPEN_SPEED));
-		scoreJ.whenPressed(new ScoreFloopy());
-		loadJ.whenPressed(new MoveToLoadPosition());
-		foldJ.whenPressed(new Fold());
+		initJoystickNavigator();
 
 		// xbox navigator commands
+		initXboxNavigator();
+
+	}
+
+	private void initXboxNavigator() {
 		closeLockerX.whileHeld(new MoveLimitedSubsystem(Robot.locker, Locker.LOCKING_SPEED));
 		openLockerX.whileHeld(new MoveLimitedSubsystem(Robot.locker, Locker.UNLOCKING_SPEED));
 		closeCraneX.whileHeld(new MoveLimitedSubsystem(Robot.crane, Crane.CRANE_CLOSING_SPEED));
@@ -59,7 +58,16 @@ public class OI /* GEVALD */ {
 		scoreX.whenPressed(new ScoreFloopy());
 		loadX.whenPressed(new MoveToLoadPosition());
 		foldX.whenPressed(new Fold());
+	}
 
+	private void initJoystickNavigator() {
+		closeLockerJ.whileHeld(new MoveLimitedSubsystem(Robot.locker, Locker.LOCKING_SPEED));
+		openLockerJ.whileHeld(new MoveLimitedSubsystem(Robot.locker, Locker.UNLOCKING_SPEED));
+		closeCraneJ.whileHeld(new MoveLimitedSubsystem(Robot.crane, Crane.CRANE_CLOSING_SPEED));
+		openCraneJ.whileHeld(new MoveLimitedSubsystem(Robot.crane, Crane.CRANE_OPEN_SPEED));
+		scoreJ.whenPressed(new ScoreFloopy());
+		loadJ.whenPressed(new MoveToLoadPosition());
+		foldJ.whenPressed(new Fold());
 	}
 
 	private double adjustInput(double input) {
