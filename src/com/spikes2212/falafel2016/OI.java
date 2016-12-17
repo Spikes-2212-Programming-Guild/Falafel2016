@@ -3,6 +3,10 @@ package com.spikes2212.falafel2016;
 import com.spikes2212.falafel2016.commands.Fold;
 import com.spikes2212.falafel2016.commands.MoveToLoadPosition;
 import com.spikes2212.falafel2016.commands.ScoreFloopy;
+import com.spikes2212.falafel2016.subsystems.Crane;
+import com.spikes2212.falafel2016.subsystems.Locker;
+import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
+import com.spikes2212.utils.XboXUID;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -11,33 +15,62 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
-public class OI {
+public class OI /* GEVALD */ {
 
-	private Joystick leftJoystick;
+	// Joysticks
+	private Joystick driver = new Joystick(0);
+	private Joystick navigator = new Joystick(1);
+	private XboXUID driverXbox = new XboXUID(2);
+	private XboXUID navigatorXbox = new XboXUID(3);
 
-	private JoystickButton scoreButton;
-	private JoystickButton foldButton;
-	private JoystickButton loadButton;
+	// Joystick navigator buttons
+	private JoystickButton openLockerJ = new JoystickButton(navigator, 5);
+	private JoystickButton closeLockerJ = new JoystickButton(navigator, 4);
+	private JoystickButton openCraneJ = new JoystickButton(navigator, 3);
+	private JoystickButton closeCraneJ = new JoystickButton(navigator, 2);
+	private JoystickButton scoreJ = new JoystickButton(navigator, 6);
+	private JoystickButton foldJ = new JoystickButton(navigator, 7);
+	private JoystickButton loadJ = new JoystickButton(navigator, 10);
+
+	// Xbox navigator buttons
+	private JoystickButton closeLockerX = (JoystickButton) navigatorXbox.getRightButton();
+	private JoystickButton openLockerX = (JoystickButton) navigatorXbox.getLeftButton();
+	private JoystickButton openCraneX = (JoystickButton) navigatorXbox.getUpButton();
+	private JoystickButton closeCraneX = (JoystickButton) navigatorXbox.getDownButton();
+	private JoystickButton scoreX = (JoystickButton) navigatorXbox.getYellowButton();
+	private JoystickButton foldX = (JoystickButton) navigatorXbox.getGreenButton();
+	private JoystickButton loadX = (JoystickButton) navigatorXbox.getBlueButton();
 
 	public OI() {
+		// joystick navigator commands
+		closeLockerJ.whileHeld(new MoveLimitedSubsystem(Robot.locker, Locker.LOCKING_SPEED));
+		openLockerJ.whileHeld(new MoveLimitedSubsystem(Robot.locker, Locker.UNLOCKING_SPEED));
+		closeCraneJ.whileHeld(new MoveLimitedSubsystem(Robot.crane, Crane.CRANE_CLOSING_SPEED));
+		openCraneJ.whileHeld(new MoveLimitedSubsystem(Robot.crane, Crane.CRANE_OPEN_SPEED));
+		scoreJ.whenPressed(new ScoreFloopy());
+		loadJ.whenPressed(new MoveToLoadPosition());
+		foldJ.whenPressed(new Fold());
 
-		leftJoystick = new Joystick(0);
+		// xbox navigator commands
+		closeLockerX.whileHeld(new MoveLimitedSubsystem(Robot.locker, Locker.LOCKING_SPEED));
+		openLockerX.whileHeld(new MoveLimitedSubsystem(Robot.locker, Locker.UNLOCKING_SPEED));
+		closeCraneX.whileHeld(new MoveLimitedSubsystem(Robot.crane, Crane.CRANE_CLOSING_SPEED));
+		openCraneX.whileHeld(new MoveLimitedSubsystem(Robot.crane, Crane.CRANE_OPEN_SPEED));
+		scoreX.whenPressed(new ScoreFloopy());
+		loadX.whenPressed(new MoveToLoadPosition());
+		foldX.whenPressed(new Fold());
 
-		scoreButton = new JoystickButton(leftJoystick, 1);
-		loadButton = new JoystickButton(leftJoystick, 2);
-		foldButton = new JoystickButton(leftJoystick, 3);
+	}
 
-		scoreButton.whenPressed(new ScoreFloopy());
-		loadButton.whenPressed(new MoveToLoadPosition());
-		foldButton.whenPressed(new Fold());
-
+	private double adjustInput(double input) {
+		return input * Math.abs(input);
 	}
 
 	public double getX() {
-		return leftJoystick.getX();
+		return adjustInput(driver.getX());
 	}
 
 	public double getY() {
-		return leftJoystick.getY();
+		return adjustInput(driver.getY());
 	}
 }
