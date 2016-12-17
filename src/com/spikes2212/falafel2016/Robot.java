@@ -25,7 +25,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		chooser = new SendableChooser();
-		chooser.addDefault("MoveAndDiscontainFloopy", new MoveAndDiscontainFloopyAuto(drivetrain, 7));
+		chooser.addDefault("MoveAndDiscontainFloopy", new MoveAndDiscontainFloopyAuto());
 		SmartDashboard.putData("auto choose", chooser);
 
 		oi = new OI();
