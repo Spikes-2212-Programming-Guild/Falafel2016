@@ -10,7 +10,8 @@ import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 public class Crane extends LimitedSubsystem {
 
 	public static final double LOAD_ANGLE = 90;
-	
+	public static final double OFSET = 35;
+	public static final double FULL_RANGE = 3600;
 	public static final double CRANE_OPEN_SPEED = 0.5;
 	public static final double CRANE_CLOSING_SPEED = -0.5;
 
@@ -23,10 +24,10 @@ public class Crane extends LimitedSubsystem {
 			Brake blocker) {
 		super(motor);
 		this.motor.setInverted(true);
-		this.potentiometer=potentiometer;
-		this.up=up;
-		this.down=down;
-		this.brake=blocker;
+		this.potentiometer = potentiometer;
+		this.up = up;
+		this.down = down;
+		this.brake = blocker;
 	}
 
 	public void initDefaultCommand() {
