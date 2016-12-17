@@ -45,7 +45,7 @@ public class OI /* GEVALD */ {
 		// joystick navigator commands
 		initJoystickNavigator();
 
-		// xbox navigator commands
+		// Xbox navigator commands
 		initXboxNavigator();
 
 	}
