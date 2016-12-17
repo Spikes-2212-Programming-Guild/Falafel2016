@@ -13,7 +13,7 @@ public class MoveToWall extends DriveTank {
 
 	public static final double CAMERA_ANGLE=40;//FIXME actual number
 	public static final double CAMERA_HEIGHT_PIXELS=320;//FIXME actual number
-	public static final double REFLECTIVE_HEIGHT=15;//FIXME actual number
+	public static final double REFLECTIVE_HEIGHT=5;
 	public static final double MIN_RANGE=2;//FIXME actual number
 	public static final double DRIVING_SPEED=0.7;
 	private double reflectivePixels;
