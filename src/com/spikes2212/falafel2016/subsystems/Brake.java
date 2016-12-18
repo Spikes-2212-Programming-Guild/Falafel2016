@@ -28,12 +28,12 @@ public class Brake extends LimitedSubsystem {
 
 	@Override
 	public boolean isMin() {
-		return close.get();
+		return !close.get();
 	}
 
 	@Override
 	public boolean isMax() {
-		return open.get();
+		return !open.get();
 	}
 
 	@Override
