@@ -35,12 +35,12 @@ public class Crane extends LimitedSubsystem {
 
 	@Override
 	public boolean isMin() {
-		return down.get() || brake.isMin();
+		return down.get() || brake.isMin(); //when brake is min it is closed
 	}
 
 	@Override
 	public boolean isMax() {
-		return up.get() || brake.isMin();
+		return up.get() || brake.isMin(); //when brake is min it is closed
 	}
 
 	@Override
