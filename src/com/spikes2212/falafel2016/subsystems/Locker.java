@@ -34,13 +34,13 @@ public class Locker extends LimitedSubsystem {
 	@Override
 	public boolean isMin() {
 
-		return down.get();
+		return !down.get();
 	}
 
 	@Override
 	public boolean isMax() {
 
-		return up.get();
+		return !up.get();
 	}
 
 	@Override
