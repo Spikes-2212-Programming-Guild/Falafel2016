@@ -9,6 +9,7 @@ import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
 import com.spikes2212.utils.XboXUID;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
@@ -33,13 +34,13 @@ public class OI /* GEVALD */ {
 	private JoystickButton loadJ = new JoystickButton(navigator, 10);
 
 	// Xbox navigator buttons
-	private JoystickButton closeLockerX = (JoystickButton) navigatorXbox.getRightButton();
-	private JoystickButton openLockerX = (JoystickButton) navigatorXbox.getLeftButton();
-	private JoystickButton openCraneX = (JoystickButton) navigatorXbox.getUpButton();
-	private JoystickButton closeCraneX = (JoystickButton) navigatorXbox.getDownButton();
-	private JoystickButton scoreX = (JoystickButton) navigatorXbox.getYellowButton();
-	private JoystickButton foldX = (JoystickButton) navigatorXbox.getGreenButton();
-	private JoystickButton loadX = (JoystickButton) navigatorXbox.getBlueButton();
+	private Button closeLockerX = navigatorXbox.getRightButton();
+	private Button openLockerX = navigatorXbox.getLeftButton();
+	private Button openCraneX = navigatorXbox.getUpButton();
+	private Button closeCraneX = navigatorXbox.getDownButton();
+	private Button scoreX = navigatorXbox.getYellowButton();
+	private Button foldX = navigatorXbox.getGreenButton();
+	private Button loadX = navigatorXbox.getBlueButton();
 
 	public OI() {
 		// joystick navigator commands
@@ -74,11 +75,11 @@ public class OI /* GEVALD */ {
 		return input * Math.abs(input);
 	}
 
-	public double getX() {
+	public double getDriverX() {
 		return adjustInput(driver.getX());
 	}
 
-	public double getY() {
+	public double getDriverY() {
 		return adjustInput(driver.getY());
 	}
 }
