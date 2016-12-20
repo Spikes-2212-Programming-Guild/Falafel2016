@@ -15,6 +15,7 @@ public class Brake extends LimitedSubsystem {
 
 	public Brake(SpeedController motor, DigitalInput close, DigitalInput open) {
 		super(motor);
+		motor.setInverted(true);
 		this.close = close;
 		this.open = open;
 	}
