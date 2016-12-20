@@ -1,6 +1,7 @@
 package com.spikes2212.falafel2016.subsystems;
 
 import com.spikes2212.genericsubsystems.LimitedSubsystem;
+import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PIDSource;
@@ -40,6 +41,12 @@ public class Brake extends LimitedSubsystem {
 	@Override
 	public PIDSource getPIDSource() {
 		return null;
+	}
+	
+	@Override
+	protected void initDefaultCommand() {
+		// TODO Auto-generated method stub
+		setDefaultCommand(new MoveLimitedSubsystem(this, CLOSE_SPEED));
 	}
 
 }
