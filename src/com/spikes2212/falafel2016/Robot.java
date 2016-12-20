@@ -12,11 +12,18 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.spikes2212.cameras.CamerasHandler;
+import com.spikes2212.falafel2016.commands.Fold;
 import com.spikes2212.falafel2016.commands.MoveAndDiscontainFloopyAuto;
+import com.spikes2212.falafel2016.commands.MoveCrane;
+import com.spikes2212.falafel2016.commands.MoveToLoadPosition;
+import com.spikes2212.falafel2016.commands.MoveToStartingPosition;
+import com.spikes2212.falafel2016.commands.ScoreFloopy;
 import com.spikes2212.falafel2016.subsystems.Brake;
 import com.spikes2212.falafel2016.subsystems.Crane;
 import com.spikes2212.falafel2016.subsystems.Drivetrain;
 import com.spikes2212.falafel2016.subsystems.Locker;
+import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
+import com.spikes2212.utils.DashBoardController;
 import com.spikes2212.utils.DoubleSpeedcontroller;
 
 public class Robot extends IterativeRobot {
@@ -28,9 +35,11 @@ public class Robot extends IterativeRobot {
 	public static SendableChooser chooser;
 	public static Command autoCommand;
 	public static CamerasHandler camerasHandler;
+	public static DashBoardController dbc;
 
 	@Override
 	public void robotInit() {
+		dbc = new DashBoardController();
 		chooser = new SendableChooser();
 		chooser.addDefault("MoveAndDiscontainFloopy", new MoveAndDiscontainFloopyAuto());
 		SmartDashboard.putData("auto choose", chooser);
@@ -49,6 +58,13 @@ public class Robot extends IterativeRobot {
 		camerasHandler = new CamerasHandler(RobotMap.USB.CAMRA_FORWARD);
 
 		oi = new OI();
+		SmartDashboard.putData("Open Crane", new MoveCrane(crane, Crane.CRANE_OPEN_SPEED));
+		SmartDashboard.putData("Closing Crane", new MoveCrane(crane, Crane.CRANE_CLOSING_SPEED));
+		SmartDashboard.putData("unlock", new MoveLimitedSubsystem(locker, Locker.UNLOCKING_SPEED));
+		SmartDashboard.putData("lock", new MoveCrane(crane, Locker.LOCKING_SPEED));
+		SmartDashboard.putData(new ScoreFloopy());
+		SmartDashboard.putData(new Fold());
+		SmartDashboard.putData(new MoveToStartingPosition());
 	}
 
 	@Override
@@ -58,8 +74,6 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
-		autoCommand = (Command) chooser.getSelected();
-		autoCommand.start();
 	}
 
 	@Override
@@ -69,7 +83,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
-		autoCommand.cancel();
+
 	}
 
 	@Override
