@@ -17,12 +17,12 @@ public class RobotMap {
 	}
 
 	public interface PWM {
-		public static final int DRIVETRAIN_RIGHT_1 = 0;
-		public static final int DRIVETRAIN_RIGHT_2 = 1;
-		public static final int DRIVETRAIN_LEFT_1 = 2;
-		public static final int DRIVETRAIN_LEFT_2 = 3;
-		public static final int LOCKER = 4;
-		public static final int BREAK = 5;
+		public static final int DRIVETRAIN_RIGHT_1 = 2;// Electrical name - DTR1
+		public static final int DRIVETRAIN_RIGHT_2 = 3;// Electrical name - DTR2
+		public static final int DRIVETRAIN_LEFT_1 = 0;// Electrical name - DTL1
+		public static final int DRIVETRAIN_LEFT_2 = 1;// Electrical name - DTL2
+		public static final int LOCKER = 4;// Electrical name - Locker
+		public static final int BREAK = 5;// Electrical name - ML 
 	}
 
 	public interface DIO {
