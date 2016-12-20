@@ -40,7 +40,7 @@ public class Robot extends IterativeRobot {
 				new DoubleSpeedcontroller(new VictorSP(RobotMap.PWM.DRIVETRAIN_LEFT_1),
 						new VictorSP(RobotMap.PWM.DRIVETRAIN_LEFT_2)));
 		Brake breaker = new Brake(new VictorSP(RobotMap.PWM.BREAK), new DigitalInput(RobotMap.DIO.BREAK_CLOSED),
-				new DigitalInput(RobotMap.DIO.BREAK_CLOSED));
+				new DigitalInput(RobotMap.DIO.BREAK_OPEN));
 		crane = new Crane(
 				new DoubleSpeedcontroller(new CANTalon(RobotMap.CAN.CRANE_1), new CANTalon(RobotMap.CAN.CRANE_2)), null,
 				new DigitalInput(RobotMap.DIO.CRANE_UP), new DigitalInput(RobotMap.DIO.CRANE_DOWN), breaker);
