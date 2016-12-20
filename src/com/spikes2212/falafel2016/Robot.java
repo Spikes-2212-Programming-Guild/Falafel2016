@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import com.spikes2212.cameras.CamerasHandler;
 import com.spikes2212.falafel2016.commands.MoveAndDiscontainFloopyAuto;
 import com.spikes2212.falafel2016.subsystems.Brake;
 import com.spikes2212.falafel2016.subsystems.Crane;
@@ -26,6 +27,7 @@ public class Robot extends IterativeRobot {
 	public static Locker locker;
 	public static SendableChooser chooser;
 	public static Command autoCommand;
+	public static CamerasHandler camerasHandler;
 
 	@Override
 	public void robotInit() {
@@ -44,6 +46,8 @@ public class Robot extends IterativeRobot {
 				new DigitalInput(RobotMap.DIO.CRANE_UP), new DigitalInput(RobotMap.DIO.CRANE_DOWN), breaker);
 		locker = new Locker(new VictorSP(RobotMap.PWM.LOCKER), new DigitalInput(RobotMap.DIO.LOCKER_OPEN),
 				new DigitalInput(RobotMap.DIO.LOCKER_CLOSED));
+		camerasHandler = new CamerasHandler(RobotMap.USB.CAMRA_FORWARD);
+
 		oi = new OI();
 	}
 

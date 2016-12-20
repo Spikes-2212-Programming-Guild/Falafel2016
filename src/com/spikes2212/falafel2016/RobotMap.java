@@ -8,6 +8,7 @@ package com.spikes2212.falafel2016;
  */
 public class RobotMap {
 	public interface USB {
+		public static final String CAMRA_FORWARD = "cam0";
 	}
 
 	public interface CAN {
