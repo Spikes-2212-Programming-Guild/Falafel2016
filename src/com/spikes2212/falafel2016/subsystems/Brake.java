@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.VictorSP;
 public class Brake extends LimitedSubsystem {
 
 	private DigitalInput close, open; // Normally open!
-	public static final double OPEN_SPEED = 0.3;// FIXME actual speed
-	public static final double CLOSE_SPEED = -0.3;// FIXME actual speed
+	public static final double OPEN_SPEED = 0.7;// FIXME actual speed
+	public static final double CLOSE_SPEED = -0.7;// FIXME actual speed
 
 	public Brake(SpeedController motor, DigitalInput close, DigitalInput open) {
 		super(motor);
@@ -22,7 +22,8 @@ public class Brake extends LimitedSubsystem {
 	}
 
 	public Brake(int motorPort, int closePort, int openPort) {
-		this(new VictorSP(motorPort), new DigitalInput(closePort), new DigitalInput(openPort));// FIXME
+		this(new VictorSP(motorPort), new DigitalInput(closePort),
+				new DigitalInput(openPort));// FIXME
 		// kind
 		// of
 		// motor
@@ -42,7 +43,7 @@ public class Brake extends LimitedSubsystem {
 	public PIDSource getPIDSource() {
 		return null;
 	}
-	
+
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
