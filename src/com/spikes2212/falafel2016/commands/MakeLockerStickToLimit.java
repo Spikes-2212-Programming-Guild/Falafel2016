@@ -30,18 +30,24 @@ public class MakeLockerStickToLimit extends MoveLimitedSubsystem {
 	protected boolean isFinished() {
 		currentTime = t.get();
 		if (Robot.locker.isMax() || Robot.locker.isMin()) {
+			
 			if (!stillHitting) {
 				firstTimeHitLimits = currentTime;
 				stillHitting = true;
-			} else if (currentTime - firstTimeHitLimits >= WAITING_TIME) {
+				return false;
+			}
+			
+			if (currentTime - firstTimeHitLimits >= WAITING_TIME) {
 				stillHitting = false;
 				return true;
 			}
-			return false;
-		} else {
-			stillHitting = false;
+			
 			return false;
 		}
+		
+		stillHitting = false;
+		return false;
+
 	}
 
 }
