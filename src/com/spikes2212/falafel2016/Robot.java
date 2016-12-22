@@ -1,4 +1,3 @@
-
 package com.spikes2212.falafel2016;
 
 import edu.wpi.first.wpilibj.CANTalon;
@@ -40,36 +39,51 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		dbc = new DashBoardController();
-		chooser = new SendableChooser();
-		chooser.addDefault("MoveAndDiscontainFloopy", new MoveAndDiscontainFloopyAuto());
-		SmartDashboard.putData("auto choose", chooser);
-		drivetrain = new Drivetrain(
-				new DoubleSpeedcontroller(new VictorSP(RobotMap.PWM.DRIVETRAIN_RIGHT_1),
-						new VictorSP(RobotMap.PWM.DRIVETRAIN_RIGHT_2)),
-				new DoubleSpeedcontroller(new VictorSP(RobotMap.PWM.DRIVETRAIN_LEFT_1),
-						new VictorSP(RobotMap.PWM.DRIVETRAIN_LEFT_2)));
-		Brake breaker = new Brake(new VictorSP(RobotMap.PWM.BREAK), new DigitalInput(RobotMap.DIO.BREAK_CLOSED),
-				new DigitalInput(RobotMap.DIO.BREAK_OPEN));
-		crane = new Crane(
-				new DoubleSpeedcontroller(new CANTalon(RobotMap.CAN.CRANE_1), new CANTalon(RobotMap.CAN.CRANE_2)), null,
-				new DigitalInput(RobotMap.DIO.CRANE_UP), new DigitalInput(RobotMap.DIO.CRANE_DOWN), breaker);
-		locker = new Locker(new VictorSP(RobotMap.PWM.LOCKER), new DigitalInput(RobotMap.DIO.LOCKER_OPEN),
-				new DigitalInput(RobotMap.DIO.LOCKER_CLOSED));
+		drivetrain = new Drivetrain(new DoubleSpeedcontroller(new VictorSP(
+				RobotMap.PWM.DRIVETRAIN_RIGHT_1), new VictorSP(
+				RobotMap.PWM.DRIVETRAIN_RIGHT_2)), new DoubleSpeedcontroller(
+				new VictorSP(RobotMap.PWM.DRIVETRAIN_LEFT_1), new VictorSP(
+						RobotMap.PWM.DRIVETRAIN_LEFT_2)));
+		Brake breaker = new Brake(new VictorSP(RobotMap.PWM.BREAK),
+				new DigitalInput(RobotMap.DIO.BREAK_CLOSED), new DigitalInput(
+						RobotMap.DIO.BREAK_OPEN));
+		crane = new Crane(new DoubleSpeedcontroller(new CANTalon(
+				RobotMap.CAN.CRANE_1), new CANTalon(RobotMap.CAN.CRANE_2)),
+				null, new DigitalInput(RobotMap.DIO.CRANE_UP),
+				new DigitalInput(RobotMap.DIO.CRANE_DOWN), breaker);
+		locker = new Locker(new VictorSP(RobotMap.PWM.LOCKER),
+				new DigitalInput(RobotMap.DIO.LOCKER_OPEN), new DigitalInput(
+						RobotMap.DIO.LOCKER_CLOSED));
 		camerasHandler = new CamerasHandler(RobotMap.USB.CAMRA_FORWARD);
 
 		oi = new OI();
-		SmartDashboard.putData("Open Crane", new MoveCrane(crane, Crane.CRANE_OPEN_SPEED));
-		SmartDashboard.putData("Closing Crane", new MoveCrane(crane, Crane.CRANE_CLOSING_SPEED));
-		SmartDashboard.putData("unlock", new MoveLimitedSubsystem(locker, Locker.UNLOCKING_SPEED));
-		SmartDashboard.putData("lock", new MoveCrane(crane, Locker.LOCKING_SPEED));
-		SmartDashboard.putData(new ScoreFloopy());
-		SmartDashboard.putData(new Fold());
-		SmartDashboard.putData(new MoveToStartingPosition());
+
 	}
 
 	@Override
 	public void disabledInit() {
+		SmartDashboard.putData("Open Crane", new MoveCrane(crane,
+				Crane.CRANE_OPEN_SPEED));
+		SmartDashboard.putData("Closing Crane", new MoveCrane(crane,
+				Crane.CRANE_CLOSING_SPEED));
+		SmartDashboard.putData("unlock", new MoveLimitedSubsystem(locker,
+				Locker.UNLOCKING_SPEED));
+		SmartDashboard.putData("lock", new MoveLimitedSubsystem(locker,
+				Locker.LOCKING_SPEED));
+		SmartDashboard.putData(new ScoreFloopy());
+		SmartDashboard.putData(new Fold());
+		SmartDashboard.putData(new MoveToStartingPosition());
+		SmartDashboard.putData("Open Brake", new MoveLimitedSubsystem(
+				crane.brake, Brake.OPEN_SPEED));
+		SmartDashboard.putData("Close Brake", new MoveLimitedSubsystem(
+				crane.brake, Brake.CLOSE_SPEED));
 
+		dbc.addBoolean("Crane up", crane::isMax);
+		dbc.addBoolean("Crane down", crane::isMin);
+		dbc.addBoolean("Brake closed", crane.brake::isMin);
+		dbc.addBoolean("Brake open", crane.brake::isMax);
+		dbc.addBoolean("Locker locked", locker::isMax);
+		dbc.addBoolean("Locker unlocked", locker::isMin);
 	}
 
 	@Override
@@ -89,11 +103,13 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		dbc.update();
 	}
 
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		dbc.update();
 	}
 
 	/**
