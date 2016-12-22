@@ -16,7 +16,7 @@ public class Locker extends LimitedSubsystem {
 
 	private DigitalInput up, down;
 	public static final double LOCKING_SPEED = 0.7;
-	public static final double UNLOCKING_SPEED = -0.3;
+	public static final double UNLOCKING_SPEED = -0.7;
 
 	public Locker(SpeedController motor, DigitalInput up, DigitalInput down) {
 		super(motor);
