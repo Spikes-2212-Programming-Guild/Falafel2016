@@ -19,10 +19,11 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI /* GEVALD */ {
 
 	// Joysticks
-	private Joystick driver = new Joystick(0);
-	private Joystick navigator = new Joystick(1);
-	private XboXUID driverXbox = new XboXUID(2);
-	private XboXUID navigatorXbox = new XboXUID(3);
+	private Joystick driverRight = new Joystick(0);
+	private Joystick driverLeft = new Joystick(1);
+	private Joystick navigator = new Joystick(2);
+	private XboXUID driverXbox = new XboXUID(3);
+	private XboXUID navigatorXbox = new XboXUID(4);
 
 	// Joystick navigator buttons
 	private JoystickButton openLockerJ = new JoystickButton(navigator, 5);
@@ -43,12 +44,8 @@ public class OI /* GEVALD */ {
 	private Button loadX = navigatorXbox.getBlueButton();
 
 	public OI() {
-		// joystick navigator commands
-		initJoystickNavigator();
-
 		// Xbox navigator commands
 		initXboxNavigator();
-
 	}
 
 	private void initXboxNavigator() {
@@ -75,11 +72,11 @@ public class OI /* GEVALD */ {
 		return input * Math.abs(input);
 	}
 
-	public double getDriverX() {
-		return adjustInput(driver.getX());
+	public double getRotation() {
+		return adjustInput(driverLeft.getY());
 	}
 
-	public double getDriverY() {
-		return adjustInput(driver.getY());
+	public double getForward() {
+		return adjustInput(driverRight.getY());
 	}
 }
