@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI /* GEVALD */ {
+	private boolean lockerIsFront;
 
 	// Joysticks
 	private Joystick driverRight = new Joystick(0);;
@@ -25,6 +26,10 @@ public class OI /* GEVALD */ {
 	private Joystick navigator = new Joystick(2);
 	private XboXUID driverXbox = new XboXUID(3);
 	private XboXUID navigatorXbox = new XboXUID(4);
+	
+	//joystick driver
+	private JoystickButton setLockerFront=new JoystickButton(driverRight, 3);
+	private JoystickButton setLockerRear=new JoystickButton(driverRight, 2);
 
 	// Joystick navigator buttons
 	private JoystickButton openLockerJ = new JoystickButton(navigator, 5);
