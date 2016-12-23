@@ -27,11 +27,11 @@ public class RobotMap {
 
 	public interface DIO {
 		public static final int CRANE_UP = 5;//Electrical name - LSCD
-		public static final int LOCKER_OPEN = 0;// Electrical name - No Name
-		public static final int CRANE_DOWN = 1;// Electrical name - LSSUP
+		public static final int LOCKER_UNLOCKED = 1;// Electrical name - No Name
+		public static final int CRANE_DOWN = 0;// Electrical name - LSSUP
 		public static final int BREAK_CLOSED = 2;// Electrical name - LSMLC
 		public static final int BREAK_OPEN = 3;// Electrical name - LSMLO
-		public static final int LOCKER_CLOSED = 4;// Electrical name - LSAC
+		public static final int LOCKER_LOCKED = 4;// Electrical name - LSAC
 	}
 	public interface AnalogInput {
 	}

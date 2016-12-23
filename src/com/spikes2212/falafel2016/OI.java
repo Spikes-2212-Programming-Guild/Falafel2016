@@ -33,7 +33,7 @@ public class OI /* GEVALD */ {
 	private JoystickButton closeCraneJ = new JoystickButton(navigator, 2);
 	private JoystickButton scoreJ = new JoystickButton(navigator, 6);
 	private JoystickButton foldJ = new JoystickButton(navigator, 7);
-	private JoystickButton loadJ = new JoystickButton(navigator, 10);
+//	private JoystickButton loadJ = new JoystickButton(navigator, 10);
 
 	// Xbox navigator buttons
 	private Button openLockerX = navigatorXbox.getRightButton();
@@ -42,7 +42,7 @@ public class OI /* GEVALD */ {
 	private Button closeCraneX = navigatorXbox.getDownButton();
 	private Button scoreX = navigatorXbox.getYellowButton();
 	private Button foldX = navigatorXbox.getGreenButton();
-	private Button loadX = navigatorXbox.getBlueButton();
+//	private Button loadX = navigatorXbox.getBlueButton();
 	
 	
 	public OI() {
@@ -56,7 +56,7 @@ public class OI /* GEVALD */ {
 		closeCraneX.whileHeld(new MoveLimitedSubsystem(Robot.crane, Crane.CRANE_CLOSING_SPEED));
 		openCraneX.whileHeld(new MoveLimitedSubsystem(Robot.crane, Crane.CRANE_OPEN_SPEED));
 		scoreX.whenPressed(new ScoreFloopy());
-		loadX.whenPressed(new MoveToLoadPosition(Robot.crane));
+//		loadX.whenPressed(new MoveToLoadPosition(Robot.crane));
 		foldX.whenPressed(new Fold());
 	}
 
@@ -66,7 +66,7 @@ public class OI /* GEVALD */ {
 		closeCraneJ.whileHeld(new MoveCrane(Robot.crane, Crane.CRANE_CLOSING_SPEED));
 		openCraneJ.whileHeld(new MoveCrane(Robot.crane, Crane.CRANE_OPEN_SPEED));
 		scoreJ.whenPressed(new ScoreFloopy());
-		loadJ.whenPressed(new MoveToLoadPosition(Robot.crane));
+//		loadJ.whenPressed(new MoveToLoadPosition(Robot.crane));
 		foldJ.whenPressed(new Fold());
 	}
 
