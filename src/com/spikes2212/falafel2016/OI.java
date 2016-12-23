@@ -36,16 +36,25 @@ public class OI /* GEVALD */ {
 	private JoystickButton loadJ = new JoystickButton(navigator, 10);
 
 	// Xbox navigator buttons
+	private Button openLockerX = navigatorXbox.getRightButton();
+	private Button closeLockerX = navigatorXbox.getLeftButton();
+	private Button openCraneX = navigatorXbox.getUpButton();
+	private Button closeCraneX = navigatorXbox.getDownButton();
 	private Button scoreX = navigatorXbox.getYellowButton();
 	private Button foldX = navigatorXbox.getGreenButton();
 	private Button loadX = navigatorXbox.getBlueButton();
-
+	
+	
 	public OI() {
 		// Xbox navigator commands
 		initXboxNavigator();
 	}
 
 	private void initXboxNavigator() {
+		closeLockerX.whileHeld(new MoveLimitedSubsystem(Robot.locker, Locker.LOCKING_SPEED));
+		openLockerX.whileHeld(new MoveLimitedSubsystem(Robot.locker, Locker.UNLOCKING_SPEED));
+		closeCraneX.whileHeld(new MoveLimitedSubsystem(Robot.crane, Crane.CRANE_CLOSING_SPEED));
+		openCraneX.whileHeld(new MoveLimitedSubsystem(Robot.crane, Crane.CRANE_OPEN_SPEED));
 		scoreX.whenPressed(new ScoreFloopy());
 		loadX.whenPressed(new MoveToLoadPosition(Robot.crane));
 		foldX.whenPressed(new Fold());
