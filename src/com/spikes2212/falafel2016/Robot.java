@@ -12,9 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.spikes2212.cameras.CamerasHandler;
 import com.spikes2212.falafel2016.commands.Fold;
-import com.spikes2212.falafel2016.commands.MoveAndDiscontainFloopyAuto;
 import com.spikes2212.falafel2016.commands.MoveCrane;
-import com.spikes2212.falafel2016.commands.MoveToLoadPosition;
 import com.spikes2212.falafel2016.commands.MoveToStartingPosition;
 import com.spikes2212.falafel2016.commands.ScoreFloopy;
 import com.spikes2212.falafel2016.subsystems.Brake;
@@ -38,6 +36,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void robotInit() {
+		
 		dbc = new DashBoardController();
 		drivetrain = new Drivetrain(new DoubleSpeedcontroller(new VictorSP(
 				RobotMap.PWM.DRIVETRAIN_RIGHT_1), new VictorSP(
