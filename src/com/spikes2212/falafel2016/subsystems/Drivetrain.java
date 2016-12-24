@@ -3,6 +3,7 @@ package com.spikes2212.falafel2016.subsystems;
 import com.spikes2212.falafel2016.Robot;
 import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
 import com.spikes2212.genericsubsystems.drivetrains.commands.DriveArcade;
+import com.spikes2212.genericsubsystems.drivetrains.commands.DriveTank;
 
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -42,6 +43,6 @@ public class Drivetrain extends TankDrivetrain {
 	}
 
 	public void initDefaultCommand() {
-		setDefaultCommand(new DriveArcade(this, Robot.oi::getForward, Robot.oi::getRotation));
+		setDefaultCommand(new DriveTank(this, Robot.oi::getLeftForward, Robot.oi::getForward));
 	}
 }
