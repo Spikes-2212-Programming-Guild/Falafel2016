@@ -50,4 +50,11 @@ public class Crane extends LimitedSubsystem {
         return this.potentiometer;
     }
 
+    public boolean isUp() {
+        return !up.get();
+    }
+
+    public boolean isDown() {
+        return !down.get();
+    }
 }
