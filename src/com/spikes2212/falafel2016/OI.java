@@ -58,8 +58,8 @@ public class OI /* GEVALD */ {
 	private void initXboxNavigator() {
 		closeLockerX.whileHeld(new MoveLimitedSubsystem(Robot.locker, Locker.LOCKING_SPEED));
 		openLockerX.whileHeld(new MoveLimitedSubsystem(Robot.locker, Locker.UNLOCKING_SPEED));
-		closeCraneX.whileHeld(new MoveLimitedSubsystem(Robot.crane, Crane.CRANE_CLOSING_SPEED));
-		openCraneX.whileHeld(new MoveLimitedSubsystem(Robot.crane, Crane.CRANE_OPEN_SPEED));
+		closeCraneX.whileHeld(new MoveCrane(Robot.crane, Crane.CRANE_CLOSING_SPEED));
+		openCraneX.whileHeld(new MoveCrane(Robot.crane, Crane.CRANE_OPEN_SPEED));
 		scoreX.whenPressed(new ScoreFloopy());
 //		loadX.whenPressed(new MoveToLoadPosition(Robot.crane));
 		foldX.whenPressed(new Fold());
