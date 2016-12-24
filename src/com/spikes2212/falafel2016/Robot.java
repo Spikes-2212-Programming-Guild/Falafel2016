@@ -72,13 +72,14 @@ public class Robot extends IterativeRobot {
                 crane.brake, Brake.OPEN_SPEED));
         SmartDashboard.putData("Close Brake", new MoveLimitedSubsystem(
                 crane.brake, Brake.CLOSE_SPEED));
+        SmartDashboard.putData(new MakeLockerStickToLimit(Locker.UNLOCKING_SPEED));
 
         dbc.addBoolean("Crane Max", crane::isMax);
         dbc.addBoolean("Crane Min", crane::isMin);
         dbc.addBoolean("Brake closed", crane.brake::isMin);
         dbc.addBoolean("Brake open", crane.brake::isMax);
-        dbc.addBoolean("Locker unlocked", locker::isMax);
-        dbc.addBoolean("Locker locked", locker::isMin);
+        dbc.addBoolean("Locker unlocked", locker::isMin);
+        dbc.addBoolean("Locker locked", locker::isMax);
     }
 
     @Override
