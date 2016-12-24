@@ -46,11 +46,11 @@ public class Crane extends LimitedSubsystem {
     }
 
     public boolean isUp() {
-        return up.get();
+        return !up.get();
     }
 
     public boolean isDown() {
-        return down.get();
+        return !down.get();
     }
 
     @Override
