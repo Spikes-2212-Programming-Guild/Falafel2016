@@ -7,6 +7,7 @@ import com.spikes2212.falafel2016.commands.ScoreFloopy;
 import com.spikes2212.falafel2016.subsystems.Crane;
 import com.spikes2212.falafel2016.subsystems.Locker;
 import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
+import com.spikes2212.utils.RunnableCommand;
 import com.spikes2212.utils.XboXUID;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -18,7 +19,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI /* GEVALD */ {
-    private boolean lockerIsFront;
+    private double craneForwardMultiplier = 1;
 
     // Joysticks
     private Joystick driverRight = new Joystick(0);
@@ -48,12 +49,18 @@ public class OI /* GEVALD */ {
     private Button closeCraneX = navigatorXbox.getGreenButton();
     private Button scoreX = navigatorXbox.getRbButton();
     private Button foldX = navigatorXbox.getLbButton();
-//	private Button loadX = navigatorXbox.getBlueButton();
+    
+//  Driver joystick buttons
+    private Button craneForward = new JoystickButton(driverRight, 3);
+    private Button craneBackwards = new JoystickButton(driverRight, 3);
 
 
     public OI() {
         // Xbox navigator commands
         initXboxNavigator();
+        craneForward.whenPressed(new RunnableCommand(() -> craneForwardMultiplier = 1));
+        craneBackwards.whenPressed(new RunnableCommand(() -> craneForwardMultiplier = -1));
+        
     }
 
     private void initXboxNavigator() {
@@ -87,10 +94,10 @@ public class OI /* GEVALD */ {
     }
 
     public double getRotation() {
-        return adjustInput(driverLeft.getY());
+        return adjustInput(-driverLeft.getY()) * craneForwardMultiplier;
     }
 
     public double getForward() {
-        return adjustInput(driverRight.getY());
+        return adjustInput(-driverRight.getY()) * craneForwardMultiplier;
     }
 }
