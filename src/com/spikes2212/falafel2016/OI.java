@@ -101,4 +101,8 @@ public class OI /* GEVALD */ {
     public double getForward() {
         return adjustInput(-driverRight.getY()) * craneForwardMultiplier;
     }
+    
+    public double getLeftForward(){
+    	return adjustInput(-driverLeft.getY()) * craneForwardMultiplier;
+    }
 }
