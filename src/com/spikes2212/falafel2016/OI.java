@@ -52,7 +52,7 @@ public class OI /* GEVALD */ {
     
 //  Driver joystick buttons
     private Button craneForward = new JoystickButton(driverRight, 3);
-    private Button craneBackwards = new JoystickButton(driverRight, 3);
+    private Button craneBackwards = new JoystickButton(driverRight, 2);
 
 
     public OI() {
@@ -60,6 +60,7 @@ public class OI /* GEVALD */ {
         initXboxNavigator();
         craneForward.whenPressed(new RunnableCommand(() -> craneForwardMultiplier = 1));
         craneBackwards.whenPressed(new RunnableCommand(() -> craneForwardMultiplier = -1));
+        Robot.dbc.addDouble("Direction", () -> craneForwardMultiplier);
         
     }
 
@@ -94,7 +95,7 @@ public class OI /* GEVALD */ {
     }
 
     public double getRotation() {
-        return adjustInput(-driverLeft.getY()) * craneForwardMultiplier;
+        return -adjustInput(-driverLeft.getY()) * craneForwardMultiplier;
     }
 
     public double getForward() {
