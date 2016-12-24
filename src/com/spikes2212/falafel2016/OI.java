@@ -1,9 +1,6 @@
 package com.spikes2212.falafel2016;
 
-import com.spikes2212.falafel2016.commands.Fold;
-import com.spikes2212.falafel2016.commands.MoveCrane;
-import com.spikes2212.falafel2016.commands.MoveToLoadPosition;
-import com.spikes2212.falafel2016.commands.ScoreFloopy;
+import com.spikes2212.falafel2016.commands.*;
 import com.spikes2212.falafel2016.subsystems.Crane;
 import com.spikes2212.falafel2016.subsystems.Locker;
 import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
@@ -18,8 +15,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI /* GEVALD */ {
-	private boolean lockerIsFront;
-
+	public double direction = 1;
 	// Joysticks
 	private Joystick driverRight = new Joystick(0);;
 	private Joystick driverLeft = new Joystick(1);
@@ -58,8 +54,8 @@ public class OI /* GEVALD */ {
 	private void initXboxNavigator() {
 		closeLockerX.whileHeld(new MoveLimitedSubsystem(Robot.locker, Locker.LOCKING_SPEED));
 		openLockerX.whileHeld(new MoveLimitedSubsystem(Robot.locker, Locker.UNLOCKING_SPEED));
-		closeCraneX.whileHeld(new MoveLimitedSubsystem(Robot.crane, Crane.CRANE_CLOSING_SPEED));
-		openCraneX.whileHeld(new MoveLimitedSubsystem(Robot.crane, Crane.CRANE_OPEN_SPEED));
+		closeCraneX.whileHeld(new MoveCraneDown());
+		openCraneX.whileHeld(new MoveCrane(Robot.crane, Crane.CRANE_OPEN_SPEED));
 		scoreX.whenPressed(new ScoreFloopy());
 //		loadX.whenPressed(new MoveToLoadPosition(Robot.crane));
 		foldX.whenPressed(new Fold());
@@ -68,7 +64,7 @@ public class OI /* GEVALD */ {
 	private void initJoystickNavigator() {
 		closeLockerJ.whileHeld(new MoveLimitedSubsystem(Robot.locker, Locker.LOCKING_SPEED));
 		openLockerJ.whileHeld(new MoveLimitedSubsystem(Robot.locker, Locker.UNLOCKING_SPEED));
-		closeCraneJ.whileHeld(new MoveCrane(Robot.crane, Crane.CRANE_CLOSING_SPEED));
+		closeCraneJ.whileHeld(new MoveCraneDown());
 		openCraneJ.whileHeld(new MoveCrane(Robot.crane, Crane.CRANE_OPEN_SPEED));
 		scoreJ.whenPressed(new ScoreFloopy());
 //		loadJ.whenPressed(new MoveToLoadPosition(Robot.crane));
