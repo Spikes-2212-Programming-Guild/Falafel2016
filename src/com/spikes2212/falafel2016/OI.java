@@ -1,5 +1,6 @@
 package com.spikes2212.falafel2016;
 
+
 import com.spikes2212.falafel2016.commands.Fold;
 import com.spikes2212.falafel2016.commands.MoveCrane;
 import com.spikes2212.falafel2016.commands.MoveToLoadPosition;
@@ -45,10 +46,9 @@ public class OI /* GEVALD */ {
     // Xbox navigator buttons
     private Button openLockerX = navigatorXbox.getRedButton();
     private Button closeLockerX = navigatorXbox.getBlueButton();
+    private Button scoreX = navigatorXbox.getRtButton();
     private Button openCraneX = navigatorXbox.getYellowButton();
     private Button closeCraneX = navigatorXbox.getGreenButton();
-    private Button scoreX = navigatorXbox.getRbButton();
-    private Button foldX = navigatorXbox.getLbButton();
     
 //  Driver joystick buttons
     private Button craneForward = new JoystickButton(driverRight, 3);
@@ -65,6 +65,7 @@ public class OI /* GEVALD */ {
     }
 
     private void initXboxNavigator() {
+    	scoreX.whileHeld(new ScoreFloopy());
         closeLockerX.whileHeld(new MoveLimitedSubsystem(Robot.locker, Locker.LOCKING_SPEED));
         openLockerX.whileHeld(new MoveLimitedSubsystem(Robot.locker, Locker.UNLOCKING_SPEED));
         closeCraneX.whileHeld(new MoveCrane(Robot.crane, () -> {
@@ -75,9 +76,6 @@ public class OI /* GEVALD */ {
             }
         }));
         openCraneX.whileHeld(new MoveCrane(Robot.crane, Crane.CRANE_OPEN_SPEED));
-        scoreX.whenPressed(new ScoreFloopy());
-//		loadX.whenPressed(new MoveToLoadPosition(Robot.crane));
-        foldX.whenPressed(new Fold());
     }
 
     private void initJoystickNavigator() {
