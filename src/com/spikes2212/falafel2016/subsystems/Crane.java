@@ -16,7 +16,7 @@ public class Crane extends LimitedSubsystem {
     public static final double CRANE_FAST_CLOSING_SPEED = -0.25;
 
     private Potentiometer potentiometer;
-    public DigitalInput up, down;
+    private DigitalInput up, down;
 
     public final Brake brake;
 
