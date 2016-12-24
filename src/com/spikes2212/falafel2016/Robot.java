@@ -81,8 +81,8 @@ public class Robot extends IterativeRobot {
 		dbc.addBoolean("Crane up not clicked", crane.up::get);
 		dbc.addBoolean("Brake closed", crane.brake::isMin);
 		dbc.addBoolean("Brake open", crane.brake::isMax);
-		dbc.addBoolean("Locker unlocked", locker::isMax);
-		dbc.addBoolean("Locker locked", locker::isMin);
+		dbc.addBoolean("Locker unlocked", locker::isMin);
+		dbc.addBoolean("Locker locked", locker::isMax);
 	}
 
 	@Override
