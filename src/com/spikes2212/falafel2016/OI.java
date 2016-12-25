@@ -44,11 +44,11 @@ public class OI /* GEVALD */ {
 //	private JoystickButton loadJ = new JoystickButton(navigator, 10);
 
     // Xbox navigator buttons
-    private Button openLockerX = navigatorXbox.getRedButton();
-    private Button closeLockerX = navigatorXbox.getBlueButton();
-    private Button scoreX = navigatorXbox.getRtButton();
-    private Button openCraneX = navigatorXbox.getYellowButton();
-    private Button closeCraneX = navigatorXbox.getGreenButton();
+    private Button openLockerX = navigatorXbox.getBlueButton();
+    private Button closeLockerX = navigatorXbox.getRedButton();
+    private Button scoreX = navigatorXbox.getRbButton();
+    private Button openCraneX = navigatorXbox.getRtButton();
+    private Button closeCraneX = navigatorXbox.getLtButton();
     
 //  Driver joystick buttons
     private Button craneForward = new JoystickButton(driverRight, 3);
