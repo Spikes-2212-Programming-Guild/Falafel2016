@@ -1,19 +1,18 @@
 package com.spikes2212.falafel2016;
 
+import com.spikes2212.falafel2016.commands.*;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.PrintCommand;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.spikes2212.cameras.CamerasHandler;
-import com.spikes2212.falafel2016.commands.Fold;
-import com.spikes2212.falafel2016.commands.MoveCrane;
-import com.spikes2212.falafel2016.commands.ScoreFloopy;
 import com.spikes2212.falafel2016.subsystems.Brake;
 import com.spikes2212.falafel2016.subsystems.Crane;
 import com.spikes2212.falafel2016.subsystems.Drivetrain;
@@ -32,6 +31,7 @@ public class Robot extends IterativeRobot {
     public static Command autoCommand;
     public static CamerasHandler camerasHandler;
     public static DashBoardController dbc;
+    public static SendableChooser sendableChooser;
 
     @Override
     public void robotInit() {
@@ -54,6 +54,11 @@ public class Robot extends IterativeRobot {
                 RobotMap.DIO.LOCKER_LOCKED));
         camerasHandler = new CamerasHandler(RobotMap.USB.CAMRA_FORWARD);
 
+        sendableChooser = new SendableChooser();
+        sendableChooser.addDefault("Do nothing", new PrintCommand("skipping auto..."));
+        sendableChooser.addObject("Drive Forward", new MoveToWallByTimeAuto());
+        sendableChooser.addObject("Score Floopy", new MoveAndDiscontainFloopyAuto());
+        SmartDashboard.putData("Auto chooser:", sendableChooser);
         oi = new OI();
 
     }
@@ -85,6 +90,8 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void autonomousInit() {
+        autoCommand = (Command) sendableChooser.getSelected();
+        autoCommand.start();
     }
 
     @Override
@@ -94,7 +101,7 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void teleopInit() {
-
+        autoCommand.cancel();
     }
 
     @Override
