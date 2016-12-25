@@ -1,6 +1,5 @@
 package com.spikes2212.falafel2016.subsystems;
 
-import com.spikes2212.falafel2016.Robot;
 import com.spikes2212.genericsubsystems.LimitedSubsystem;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -17,8 +16,8 @@ public class Crane extends LimitedSubsystem {
     public static final double CRANE_OPEN_SPEED = 0.4;//0.4
     public static final double CRANE_CLOSING_SPEED = -0.05;//-0.1
     public static final double CRANE_FAST_CLOSING_SPEED = -0.25;
-    public static final Supplier<Double> CRANE_CLOSE_SUPPLIER = () -> {
-            if (Robot.crane.isUp()) {
+    public final Supplier<Double> CRANE_CLOSE_SUPPLIER = () -> {
+            if (this.isUp()) {
                 return Crane.CRANE_FAST_CLOSING_SPEED;
             } else {
                 return Crane.CRANE_CLOSING_SPEED;
