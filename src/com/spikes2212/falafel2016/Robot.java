@@ -77,8 +77,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Close Brake", new MoveLimitedSubsystem(
 				crane.brake, Brake.CLOSE_SPEED));
 
-		dbc.addBoolean("Crane down not clicked", crane::isDown);
-		dbc.addBoolean("Crane up not clicked", crane::isUp);
+		dbc.addBoolean("Crane down clicked", crane::isDown);
+		dbc.addBoolean("Crane up clicked", crane::isUp);
 		dbc.addBoolean("Brake closed", crane.brake::isMin);
 		dbc.addBoolean("Brake open", crane.brake::isMax);
 		dbc.addBoolean("Locker unlocked", locker::isMin);
