@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 
 public class MoveCrane extends CommandGroup {
     Supplier<Double> speedSupplier;
-    Crane crane;
+    private Crane crane;
     public final static double waitTimeout = 0.2;
 
     public MoveCrane(Crane crane, Supplier<Double> s) {
