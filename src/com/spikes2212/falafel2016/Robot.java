@@ -12,9 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.spikes2212.cameras.CamerasHandler;
 import com.spikes2212.falafel2016.commands.Fold;
-import com.spikes2212.falafel2016.commands.MoveAndDiscontainFloopyAuto;
 import com.spikes2212.falafel2016.commands.MoveCrane;
-import com.spikes2212.falafel2016.commands.MoveToLoadPosition;
 import com.spikes2212.falafel2016.commands.MoveToStartingPosition;
 import com.spikes2212.falafel2016.commands.ScoreFloopy;
 import com.spikes2212.falafel2016.subsystems.Brake;
@@ -38,6 +36,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void robotInit() {
+		
 		dbc = new DashBoardController();
 		drivetrain = new Drivetrain(new DoubleSpeedcontroller(new VictorSP(
 				RobotMap.PWM.DRIVETRAIN_RIGHT_1), new VictorSP(
@@ -51,9 +50,9 @@ public class Robot extends IterativeRobot {
 				RobotMap.CAN.CRANE_1), new CANTalon(RobotMap.CAN.CRANE_2)),
 				null, new DigitalInput(RobotMap.DIO.CRANE_UP),
 				new DigitalInput(RobotMap.DIO.CRANE_DOWN), breaker);
-		locker = new Locker(new VictorSP(RobotMap.PWM.LOCKER),
-				new DigitalInput(RobotMap.DIO.LOCKER_OPEN), new DigitalInput(
-						RobotMap.DIO.LOCKER_CLOSED));
+		locker = new Locker(new VictorSP(RobotMap.PWM.LOCKER), 
+				new DigitalInput(RobotMap.DIO.LOCKER_UNLOCKED), new DigitalInput(
+						RobotMap.DIO.LOCKER_LOCKED));
 		camerasHandler = new CamerasHandler(RobotMap.USB.CAMRA_FORWARD);
 
 		oi = new OI();
@@ -66,24 +65,24 @@ public class Robot extends IterativeRobot {
 				Crane.CRANE_OPEN_SPEED));
 		SmartDashboard.putData("Closing Crane", new MoveCrane(crane,
 				Crane.CRANE_CLOSING_SPEED));
-		SmartDashboard.putData("unlock", new MoveLimitedSubsystem(locker,
+		SmartDashboard.putData("unlock floopy", new MoveLimitedSubsystem(locker,
 				Locker.UNLOCKING_SPEED));
-		SmartDashboard.putData("lock", new MoveLimitedSubsystem(locker,
+		SmartDashboard.putData("lock floopy", new MoveLimitedSubsystem(locker,
 				Locker.LOCKING_SPEED));
-		SmartDashboard.putData(new ScoreFloopy());
-		SmartDashboard.putData(new Fold());
-		SmartDashboard.putData(new MoveToStartingPosition());
+		SmartDashboard.putData("score floopy",new ScoreFloopy());
+		SmartDashboard.putData("fold system",new Fold());
+		SmartDashboard.putData("move to start position",new MoveToStartingPosition());
 		SmartDashboard.putData("Open Brake", new MoveLimitedSubsystem(
 				crane.brake, Brake.OPEN_SPEED));
 		SmartDashboard.putData("Close Brake", new MoveLimitedSubsystem(
 				crane.brake, Brake.CLOSE_SPEED));
 
-		dbc.addBoolean("Crane up", crane::isMax);
-		dbc.addBoolean("Crane down", crane::isMin);
+		dbc.addBoolean("Crane down clicked", crane::isDown);
+		dbc.addBoolean("Crane up clicked", crane::isUp);
 		dbc.addBoolean("Brake closed", crane.brake::isMin);
 		dbc.addBoolean("Brake open", crane.brake::isMax);
-		dbc.addBoolean("Locker locked", locker::isMax);
 		dbc.addBoolean("Locker unlocked", locker::isMin);
+		dbc.addBoolean("Locker locked", locker::isMax);
 	}
 
 	@Override
