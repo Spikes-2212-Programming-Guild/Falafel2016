@@ -68,13 +68,7 @@ public class OI /* GEVALD */ {
     	scoreX.whileHeld(new ScoreFloopy());
         closeLockerX.whileHeld(new MoveLimitedSubsystem(Robot.locker, Locker.LOCKING_SPEED));
         openLockerX.whileHeld(new MoveLimitedSubsystem(Robot.locker, Locker.UNLOCKING_SPEED));
-        closeCraneX.whileHeld(new MoveCrane(Robot.crane, () -> {
-            if (Robot.crane.isUp()) {
-                return Crane.CRANE_FAST_CLOSING_SPEED;
-            } else {
-                return Crane.CRANE_CLOSING_SPEED;
-            }
-        }));
+        closeCraneX.whileHeld(new MoveCrane(Robot.crane, Robot.crane.CRANE_CLOSE_SUPPLIER));
         openCraneX.whileHeld(new MoveCrane(Robot.crane, Crane.CRANE_OPEN_SPEED));
     }
 
