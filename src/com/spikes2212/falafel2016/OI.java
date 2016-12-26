@@ -93,7 +93,7 @@ public class OI /* GEVALD */ {
     }
 
     public double getRotation() {
-        return -adjustInput(-driverLeft.getY()) * craneForwardMultiplier;
+        return adjustInput(driverRight.getX()) * craneForwardMultiplier;
     }
 
     public double getForward() {
