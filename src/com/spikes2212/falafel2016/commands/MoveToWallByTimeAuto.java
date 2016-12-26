@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  * Created by thinkredstone on 12/25/16.
  */
 public class MoveToWallByTimeAuto extends CommandGroup {
-    public static final double LEFT_SPEED = 0.3;
-    public static final double RIGHT_SPEED = 0.3;
+    public static final double LEFT_SPEED = 0.7;
+    public static final double RIGHT_SPEED = 0.7;
     public static final double MOVING_TIME_OUT = 7;
 
     public MoveToWallByTimeAuto() {
