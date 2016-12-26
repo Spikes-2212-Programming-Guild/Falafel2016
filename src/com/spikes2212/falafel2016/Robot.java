@@ -54,6 +54,7 @@ public class Robot extends IterativeRobot {
 				new DigitalInput(RobotMap.DIO.LOCKER_UNLOCKED), new DigitalInput(
 						RobotMap.DIO.LOCKER_LOCKED));
 		camerasHandler = new CamerasHandler(RobotMap.USB.CAMRA_FORWARD);
+		camerasHandler.start(RobotMap.USB.CAMRA_FORWARD);
 
 		oi = new OI();
 
