@@ -51,7 +51,6 @@ public class Robot extends IterativeRobot {
 				new DigitalInput(RobotMap.DIO.LOCKER_UNLOCKED), new DigitalInput(
 						RobotMap.DIO.LOCKER_LOCKED));
 		camerasHandler = new CamerasHandler(RobotMap.USB.CAMRA_FORWARD);
-		camerasHandler.start(RobotMap.USB.CAMRA_FORWARD);
 
         sendableChooser = new SendableChooser();
         sendableChooser.addDefault("Do nothing", new PrintCommand("skipping auto..."));
@@ -64,6 +63,7 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void disabledInit() {
+    	camerasHandler.start(RobotMap.USB.CAMRA_FORWARD);
 
     }
 
