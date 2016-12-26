@@ -1,20 +1,18 @@
 package com.spikes2212.falafel2016;
 
+import com.spikes2212.falafel2016.commands.*;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.PrintCommand;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.spikes2212.cameras.CamerasHandler;
-import com.spikes2212.falafel2016.commands.Fold;
-import com.spikes2212.falafel2016.commands.MoveCrane;
-import com.spikes2212.falafel2016.commands.MoveToStartingPosition;
-import com.spikes2212.falafel2016.commands.ScoreFloopy;
 import com.spikes2212.falafel2016.subsystems.Brake;
 import com.spikes2212.falafel2016.subsystems.Crane;
 import com.spikes2212.falafel2016.subsystems.Drivetrain;
@@ -25,14 +23,15 @@ import com.spikes2212.utils.DoubleSpeedcontroller;
 
 public class Robot extends IterativeRobot {
 
-	public static OI oi;
-	public static Drivetrain drivetrain;
-	public static Crane crane;
-	public static Locker locker;
-	public static SendableChooser chooser;
-	public static Command autoCommand;
-	public static CamerasHandler camerasHandler;
-	public static DashBoardController dbc;
+    public static OI oi;
+    public static Drivetrain drivetrain;
+    public static Crane crane;
+    public static Locker locker;
+    public static SendableChooser chooser;
+    public static Command autoCommand;
+    public static CamerasHandler camerasHandler;
+    public static DashBoardController dbc;
+    public static SendableChooser sendableChooser;
 
 	@Override
 	public void robotInit() {
@@ -56,39 +55,45 @@ public class Robot extends IterativeRobot {
 		camerasHandler = new CamerasHandler(RobotMap.USB.CAMRA_FORWARD);
 		camerasHandler.start(RobotMap.USB.CAMRA_FORWARD);
 
-		oi = new OI();
+        sendableChooser = new SendableChooser();
+        sendableChooser.addDefault("Do nothing", new PrintCommand("skipping auto..."));
+        sendableChooser.addObject("Drive Forward", new MoveToWallByTimeAuto());
+        sendableChooser.addObject("Score Floopy", new MoveAndDiscontainFloopyAuto());
+        SmartDashboard.putData("Auto chooser:", sendableChooser);
+        oi = new OI();
 
 	}
 
-	@Override
-	public void disabledInit() {
-		SmartDashboard.putData("Open Crane", new MoveCrane(crane,
-				Crane.CRANE_OPEN_SPEED));
-		SmartDashboard.putData("Closing Crane", new MoveCrane(crane,
-				Crane.CRANE_CLOSING_SPEED));
-		SmartDashboard.putData("unlock floopy", new MoveLimitedSubsystem(locker,
-				Locker.UNLOCKING_SPEED));
-		SmartDashboard.putData("lock floopy", new MoveLimitedSubsystem(locker,
-				Locker.LOCKING_SPEED));
-		SmartDashboard.putData("score floopy",new ScoreFloopy());
-		SmartDashboard.putData("fold system",new Fold());
-		SmartDashboard.putData("move to start position",new MoveToStartingPosition());
-		SmartDashboard.putData("Open Brake", new MoveLimitedSubsystem(
-				crane.brake, Brake.OPEN_SPEED));
-		SmartDashboard.putData("Close Brake", new MoveLimitedSubsystem(
-				crane.brake, Brake.CLOSE_SPEED));
+    @Override
+    public void disabledInit() {
+        SmartDashboard.putData("Open Crane", new MoveCrane(crane,
+                Crane.CRANE_OPEN_SPEED));
+        SmartDashboard.putData("Closing Crane", new MoveCrane(crane,
+                Crane.CRANE_CLOSING_SPEED));
+        SmartDashboard.putData("unlock floopy", new MoveLimitedSubsystem(locker,
+                Locker.UNLOCKING_SPEED));
+        SmartDashboard.putData("lock floopy", new MoveLimitedSubsystem(locker,
+                Locker.LOCKING_SPEED));
+        SmartDashboard.putData("score floopy", new ScoreFloopy());
+        SmartDashboard.putData("fold system", new Fold());
+        SmartDashboard.putData("Open Brake", new MoveLimitedSubsystem(
+                crane.brake, Brake.OPEN_SPEED));
+        SmartDashboard.putData("Close Brake", new MoveLimitedSubsystem(
+                crane.brake, Brake.CLOSE_SPEED));
 
-		dbc.addBoolean("Crane down clicked", crane::isDown);
-		dbc.addBoolean("Crane up clicked", crane::isUp);
-		dbc.addBoolean("Brake closed", crane.brake::isMin);
-		dbc.addBoolean("Brake open", crane.brake::isMax);
-		dbc.addBoolean("Locker unlocked", locker::isMin);
-		dbc.addBoolean("Locker locked", locker::isMax);
-	}
+        dbc.addBoolean("Crane down clicked", crane::isDown);
+        dbc.addBoolean("Crane up clicked", crane::isUp);
+        dbc.addBoolean("Brake closed", crane.brake::isMin);
+        dbc.addBoolean("Brake open", crane.brake::isMax);
+        dbc.addBoolean("Locker unlocked", locker::isMin);
+        dbc.addBoolean("Locker locked", locker::isMax);
+    }
 
-	@Override
-	public void autonomousInit() {
-	}
+    @Override
+    public void autonomousInit() {
+        autoCommand = (Command) sendableChooser.getSelected();
+        autoCommand.start();
+    }
 
 	@Override
 	public void autonomousPeriodic() {

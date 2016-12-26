@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 
+import java.util.function.Supplier;
+
 public class Crane extends LimitedSubsystem {
 
     public static final double LOAD_ANGLE = 90;
@@ -14,6 +16,13 @@ public class Crane extends LimitedSubsystem {
     public static final double CRANE_OPEN_SPEED = 0.5;
     public static final double CRANE_CLOSING_SPEED = -0.05;//-0.1
     public static final double CRANE_FAST_CLOSING_SPEED = -0.25;
+    public final Supplier<Double> CRANE_CLOSE_SUPPLIER = () -> {
+            if (this.isUp()) {
+                return Crane.CRANE_FAST_CLOSING_SPEED;
+            } else {
+                return Crane.CRANE_CLOSING_SPEED;
+            }
+        };
 
     private Potentiometer potentiometer;
     private DigitalInput up, down;
