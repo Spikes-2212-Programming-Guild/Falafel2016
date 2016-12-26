@@ -60,7 +60,6 @@ public class OI /* GEVALD */ {
         initXboxNavigator();
         craneForward.whenPressed(new RunnableCommand(() -> craneForwardMultiplier = 1));
         craneBackwards.whenPressed(new RunnableCommand(() -> craneForwardMultiplier = -1));
-        Robot.dbc.addDouble("Direction", () -> craneForwardMultiplier);
         
     }
 
