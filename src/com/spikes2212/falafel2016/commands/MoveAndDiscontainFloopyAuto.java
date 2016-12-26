@@ -10,7 +10,7 @@ public class MoveAndDiscontainFloopyAuto extends CommandGroup {
     public static final double DROPPING_TIME_OUT = 3;
 
     public MoveAndDiscontainFloopyAuto() {
-        addSequential(new MoveAndDiscontainFloopyAuto());
+        addSequential(new MoveToWallByTimeAuto());
         addSequential(new ScoreFloopy());
         addSequential(new WaitCommand(DROPPING_TIME_OUT));
         addSequential(new MoveCrane(Robot.crane, Robot.crane.CRANE_CLOSE_SUPPLIER));
