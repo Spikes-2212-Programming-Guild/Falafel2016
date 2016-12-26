@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class MoveToWallByTimeAuto extends CommandGroup {
     public static final double LEFT_SPEED = 0.7;
     public static final double RIGHT_SPEED = 0.7;
-    public static final double MOVING_TIME_OUT = 7;
+    public static final double MOVING_TIME_OUT = 5;
 
     public MoveToWallByTimeAuto() {
         addSequential(new DriveTank(Robot.drivetrain, LEFT_SPEED, RIGHT_SPEED), MOVING_TIME_OUT);
